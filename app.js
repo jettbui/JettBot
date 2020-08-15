@@ -8,10 +8,15 @@ const cooldowns = new Discord.Collection();
 
 // import commands
 const commandFiles = fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
+
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
+    console.log("Loaded " + file);
 }
+
+// music data
+const queue = new Map();
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}.`);
@@ -74,7 +79,14 @@ client.on("message", (message) => {
     
     // execute command
     try {
-        command.execute(message, args);
+        
+        // handle music commands
+        if (["play", "skip", "stop"].includes(commandName)) {
+            const serverQueue = queue.get(message.guild.id);
+            command.execute(message, args, serverQueue);
+        } else {
+            command.execute(message, args);
+        }
     } catch (error) {
         console.error("An error occurred executing a command:", error);
         message.channel.send("That command does not exist.");
