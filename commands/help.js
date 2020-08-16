@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { prefix, defaultCooldown } = require("../config.json");
-const { generalEmbed, commandEmbed, customizationEmbed, funEmbed,
+const { generalEmbed, allEmbed, commandEmbed, customizationEmbed, funEmbed,
         informationalEmbed, moderationEmbed, utilityEmbed } = require("./embeds.json");
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
     guildOnly: false,
 	execute(message, args) {
         const { commands } = message.client;
+        const categories = ["customization", "fun", "informational", "moderation", "utility"];
 
         // general
         if (!args.length) {
@@ -25,9 +26,35 @@ module.exports = {
             return;
         }
 
+        // all
+        if (args[0].toLowerCase() === "all") {
+            const allCommandsEmbed = new Discord.MessageEmbed();
+            const allCommands = commands.filter((cmd) => categories.includes(cmd.category));
+            allCommandsEmbed   
+                .setColor(allEmbed.color)
+                .setAuthor(allEmbed.author.name, allEmbed.author.icon_url)
+                .setTitle(allEmbed.title)
+                .setFooter(allEmbed.footer.text);
+            // dynamic attributes for embed
+            for (const command of allCommands.array()) {
+                if (command.usage) {
+                    allCommandsEmbed
+                        .addField(`${prefix}${command.name} ${command.usage}`, command.description, true)
+                } else {
+                    allCommandsEmbed
+                        .addField(`${prefix}${command.name}`, command.description, true)
+                }
+            }
+            message.author.send(allCommandsEmbed)
+                .catch((error) => {
+                    console.error(error);
+                    message.channel.send("It seems like you have DMs disabled.");
+                });
+            return;
+        }
+
         // categorical
         const category = args[0].toLowerCase();
-        const categories = ["customization", "fun", "informational", "moderation", "utility"];
         if (categories.includes(category)) {
             const categoricalEmbed = new Discord.MessageEmbed();
             let categoricalCommands;
@@ -89,7 +116,7 @@ module.exports = {
 
             message.author.send(categoricalEmbed)
                 .catch((error) => {
-                    console.error("An error occurred with the help command.\n", error);
+                    console.error(error);
                     message.channel.send("It seems like you have DMs disabled.");
                 });
             return;
@@ -99,10 +126,7 @@ module.exports = {
         const name = args[0].toLowerCase();
         const command = commands.get(name) || commands.find((c) => c.aliases && c.aliases.includes(name));
 
-        if (!command) {
-            message.channel.send("That command does not exist.");
-            return;
-        }
+        if (!command) return message.channel.send("That command does not exist.");;
 
         const individualEmbed = new Discord.MessageEmbed()
             .setColor(commandEmbed.color)

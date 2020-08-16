@@ -60,6 +60,17 @@
             "text": "Copyright JettBot, © 2020"
         }
     },
+    "allEmbed" : {
+        "color": "#7289da",
+        "author": {
+            "name": "JettBot",
+            "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+        },
+        "title": "All Commands",
+        "footer": {
+            "text": "Copyright JettBot, © 2020"
+        }
+    },
     "commandEmbed": {
         "color": "#546e7a",
         "author": {

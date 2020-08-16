@@ -37,10 +37,11 @@ client.on("message", (message) => {
     if (!command) return;
     
     // check context
-    if (command.guildOnly && message.channel.type !== "text") {
-        message.channel.send("You may only use this command in a server.");
-        return;
-    }
+    if (command.guildOnly && message.channel.type !== "text")
+        return message.channel.send("You may only use this command in a server.");
+
+    if (command.devOnly && message.author.id != ownerId)
+        return message.channel.send("Only authorized users may use this command.");
 
     // check args
     if (command.args && !args.length) {
@@ -50,8 +51,7 @@ client.on("message", (message) => {
             response += `\nUsage: ${prefix}${command.name} ${command.usage}`
         }
 
-        message.channel.send(response);
-        return;
+        return message.channel.send(response);
     }
 
     // check cooldown
@@ -66,10 +66,8 @@ client.on("message", (message) => {
     if (timestamps.has(message.author.id)) {
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
-        if (now < expirationTime) {
-            message.channel.send("The command is currently on cooldown.");
-            return;
-        }
+        if (now < expirationTime)
+            return message.channel.send("The command is currently on cooldown.");
     }
 
     if (message.author.id != ownerId) {

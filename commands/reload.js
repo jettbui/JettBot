@@ -1,12 +1,11 @@
 module.exports = {
 	name: "reload",
     description: "Reloads a command",
-    category: "developer",
     aliases: [],
     args: true,
     usage: "<command name>",
-    cooldown: 1,
     guildOnly: false,
+    devOnly: true,
 	execute(message, args) {
         // command handler
         const commandName = args[0].toLowerCase();
