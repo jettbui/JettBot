@@ -8,12 +8,15 @@ const cooldowns = new Discord.Collection();
 
 // import commands
 const commandFiles = fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
+const loadedFiles = [];
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
-    console.log("Loaded " + file);
+    loadedFiles.push(file);
 }
+
+console.log(`Loaded the following commands:\n${loadedFiles.join("\n")}\n`);
 
 // music data
 const queue = new Map();
