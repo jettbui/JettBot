@@ -3,12 +3,13 @@ const ytdl = require("ytdl-core");
 module.exports = {
     name: "play",
     description: "Plays music",
-    category: "fun",
+    category: "music",
     aliases: [],
-    args: false,
+    args: true,
     usage: "<link>",
     cooldown: 5,
     guildOnly: true,
+    disabled: true,
     async execute(message, args, serverQueue) {
 
         const url = args[0];
@@ -24,7 +25,7 @@ module.exports = {
         });
 
         dispatcher.on("error", console.error);
-        return;
+        if (!(args[1] === "dontstop")) return;
 
         try {
             const queue = message.client.queue;

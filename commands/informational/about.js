@@ -1,13 +1,13 @@
-const { aboutEmbed } = require("./embeds.json");
+const { aboutEmbed } = require("../../json/embeds.json");
 
 module.exports = {
-	name: "about",
+    name: "about",
     description: "Sends information about JettBot",
     category: "informational",
     aliases: ["info"],
     args: false,
     guildOnly: false,
-	execute(message, args) {
+    execute(message) {
         message.channel.send({embed: aboutEmbed});
-	},
+    },
 };

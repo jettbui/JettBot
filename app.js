@@ -1,31 +1,44 @@
 const Discord = require("discord.js"),
-      { prefix, token, defaultCooldown, defaultActivity, ownerId } = require("./config.json"),
-      responses = require("./json/responses.json"),
-      fs = require("fs");
+    Client = require("./client/Client"),
+    fs = require("fs"),
+    { exit } = require("process"),
+    { prefix, token, defaultCooldown, defaultActivity, ownerId } = require("./config.json"),
+    { globalResponses } = require("./json/responses.json");
 
-const client = new Discord.Client();
+console.log("Starting JettBot...\n");
+const client = new Client();
 client.commands = new Discord.Collection();
-const cooldowns = new Discord.Collection();
+client.cooldowns = new Discord.Collection();
 
 // import commands
-const commandFiles = fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
-const loadedFiles = [];
+console.log("Loading the following commands:");
+
+const commandFiles = fs.readdirSync("./commands", { withFileTypes: true });
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-    loadedFiles.push(file);
+    if (file.name.endsWith(".js")) {
+        const command = require(`./commands/${file.name}`);
+        client.commands.set(command.name, command);
+    } else if (file.isDirectory()) {
+        const subfolder = fs.readdirSync(`./commands/${file.name}`);
+        if (!subfolder.length) continue;
+        for (const subfile of subfolder) {
+            if (subfile.endsWith(".js")) {
+                const command_2 = require(`./commands/${file.name}/${subfile}`);
+                client.commands.set(command_2.name, command_2);
+            }
+        }
+        console.log(`${subfolder.map(s => `${file.name}/${s}`).join("\n")}`);
+    }
 }
 
-console.log(`Loaded the following commands:\n${loadedFiles.join("\n")}\n`);
-
-// music data
-const queue = new Map();
+console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join("\n")}\n`);
 
 // client events
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}.`);
     client.user.setActivity(defaultActivity, { type: "PLAYING" });
+    console.log(`Activity set to '${defaultActivity}'`);
 });
 
 client.on("message", (message) => {
@@ -39,61 +52,63 @@ client.on("message", (message) => {
     const command = client.commands.get(commandName)
                     || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
-    if (!command) return message.channel.send(responses.global.noCommand);
+    if (!command)
+        return message.channel.send(globalResponses.noCommand);
     
     // check context
+    if (command.disabled)
+        return message.channel.send(globalResponses.commandDisabled);
     if (command.guildOnly && message.channel.type !== "text")
-        return message.channel.send(responses.global.serverOnly);
-
+        return message.channel.send(globalResponses.serverOnly);
     if (command.devOnly && message.author.id != ownerId)
-        return message.channel.send(responses.global.notAuthorized);
+        return message.channel.send(globalResponses.notAuthorized);
 
     // check args
     if (command.args && !args.length) {
-        let response = responses.global.invalidArgs;
+        let response = globalResponses.invalidArgs;
 
-        if (command.usage) {
-            response += `\nUsage: ${prefix}${command.name} ${command.usage}`
-        }
+        if (command.usage)
+            response += `\nUsage: ${prefix}${command.name} ${command.usage}`;
 
         return message.channel.send(response);
     }
 
     // check cooldown
-    if (!cooldowns.has(command.name)) {
-        cooldowns.set(command.name, new Discord.Collection());
-    }
+    if (!client.cooldowns.has(command.name))
+        client.cooldowns.set(command.name, new Discord.Collection());
 
     const now = Date.now();
-    const timestamps = cooldowns.get(command.name);
+    const timestamps = client.cooldowns.get(command.name);
     const cooldownAmount = (command.cooldown || defaultCooldown) * 1000;
 
     if (timestamps.has(message.author.id)) {
         const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
         if (now < expirationTime)
-            return message.channel.send(responses.global.cooldown);
+            return message.channel.send(globalResponses.cooldown);
     }
 
-    if (message.author.id != ownerId) {
-        timestamps.set(message.author.id, now);
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    }
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     
     // execute command
     try {
-        
         // handle music commands
         if (["play", "skip", "stop"].includes(commandName)) {
-            const serverQueue = queue.get(message.guild.id);
+            const serverQueue = client.queue.get(message.guild.id);
             command.execute(message, args, serverQueue);
         } else {
             command.execute(message, args);
         }
     } catch (error) {
         console.error("An error occurred executing a command:\n", error);
-        message.channel.send(responses.global.error);
+        message.channel.send(globalResponses.error);
     }
+});
+
+client.on("invalidated", () => {
+    console.log("The bot is now invalidated. The process will now exit.");
+    exit();
 });
 
 client.login(token);

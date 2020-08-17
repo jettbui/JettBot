@@ -1,0 +1,173 @@
+{
+    "aboutEmbed": {
+        "color": "#0099ff",
+        "author": {
+            "name": "JettBot"
+        },
+        "description": "A multi-purpose and easy-to-use Discord bot",
+        "thumbnail": {
+            "url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+        },
+        "fields": [
+            {
+                "name": "Author",
+                "value": "Jett Bui"
+            },
+            {
+                "name": "Invite Link",
+                "value": "https://discord.com/api/oauth2/authorize?client_id=734847208154857493&permissions=8&scope=bot"
+            }
+        ],
+        "footer": {
+            "text": "Copyright JettBot, © 2020"
+        }
+    },
+    "emotesEmbed": {
+        "color": "#7289da",
+        "author": {
+            "name": "JettBot",
+            "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+        },
+        "title": "All Emotes",
+        "footer": {
+            "text": "Copyright JettBot, © 2020"
+        }
+    },
+    "userEmbed": {
+        "footer": {
+            "text": "Copyright JettBot, © 2020"
+        }
+    },
+    "helpEmbeds": {
+        "allEmbed": {
+            "color": "#7289da",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "All Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "commandEmbed": {
+            "color": "#546e7a",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "customizationEmbed": {
+            "color": "#3498db",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Customization Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "funEmbed": {
+            "color": "#e74c3c",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Fun Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "generalEmbed": {
+            "color": "#7289da",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Commands",
+            "fields": [
+                {
+                    "name": "Customization",
+                    "value": "!help customization",
+                    "inline": true
+                },
+                {
+                    "name": "Fun",
+                    "value": "!help fun",
+                    "inline": true
+                },
+                {
+                    "name": "Informational",
+                    "value": "!help informational",
+                    "inline": true
+                },
+                {
+                    "name": "Music",
+                    "value": "!help music",
+                    "inline": true
+                },
+                {
+                    "name": "Moderation",
+                    "value": "!help moderation",
+                    "inline": true
+                },
+                {
+                    "name": "Utility",
+                    "value": "!help utility",
+                    "inline": true
+                }
+            ],
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "informationalEmbed": {
+            "color": "#1abc9c",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Informational Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "moderationEmbed": {
+            "color": "#2ecc71",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Moderation Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "musicEmbed": {
+            "color": "#f1c40f",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Music Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        },
+        "utilityEmbed": {
+            "color": "#9b59b6",
+            "author": {
+                "name": "JettBot",
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            },
+            "title": "Utility Commands",
+            "footer": {
+                "text": "Copyright JettBot, © 2020"
+            }
+        }
+    }
+}
