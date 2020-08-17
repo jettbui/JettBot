@@ -1,6 +1,7 @@
 {
   "name": "jettbot",
   "version": "1.0.0",
+  "repository": "https://github.com/jettbui/JettBot.git",
   "description": "An easy-to-use and multipurpose Discord bot.",
   "main": "app.js",
   "scripts": {
