@@ -1,3 +1,5 @@
+const responses = require("../json/responses.json");
+
 module.exports = {
 	name: "8ball",
     description: "Ask the Magic 8Ball a question",
@@ -7,18 +9,9 @@ module.exports = {
     usage: "<question>",
     guildOnly: false,
 	execute(message, args) {
-        const responses = ["For sure.",
-                           "YEP",
-                           "Probably.",
-                           "I think so.",
-                           "Maybe... maybe not.",
-                           "I don't even know.",
-                           "Probably not.",
-                           "I don't think so.",
-                           "No.",
-                           "DEFINITELY NOT."];
+        const replies = responses._8ball.replies;
         const question = args.join(" ");
-        const response = responses[Math.floor(Math.random() * responses.length)];
+        const response = replies[Math.floor(Math.random() * replies.length)];
 
         message.channel.send(`**Question:** _${question}_\n**<:8ball:734976384782565447>:** ${response}`)
 	},

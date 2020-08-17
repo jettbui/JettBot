@@ -1,0 +1,22 @@
+{
+    "global": {
+        "error": "An error has occurred. Check logs for details.",
+        "cooldown": "The command is currently on cooldown.",
+        "noCommand": "That command does not exist.",
+        "serverOnly": "You may only use this command in a server.",
+        "invalidArgs": "Invalid arguments provided.",
+        "notAuthorized": "Only authorized users may use this command."
+    },
+    "_8ball": {
+        "replies": ["For sure.",
+                      "YEP",
+                      "Probably.",
+                      "I think so.",
+                      "Maybe... maybe not.",
+                      "I don't even know.",
+                      "Probably not.",
+                      "I don't think so.",
+                      "No.",
+                      "DEFINITELY NOT."]
+    }
+}
