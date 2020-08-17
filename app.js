@@ -2,7 +2,7 @@ const Discord = require("discord.js"),
     Client = require("./client/Client"),
     fs = require("fs"),
     { exit } = require("process"),
-    { prefix, token, defaultCooldown, defaultActivity, ownerId } = require("./config.json"),
+    { prefix, token, defaultCooldown, defaultActivity, ownerId, logMessages } = require("./config.json"),
     { globalResponses } = require("./json/responses.json");
 
 console.log("Starting JettBot...\n");
@@ -36,12 +36,18 @@ console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join
 
 // client events
 client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}.`);
+    console.log("Online on the following servers:")
+    client.guilds.cache.forEach((server) => {console.log(`- ${server.name}`)});
+    console.log(`Logged in as ${client.user.tag}.\n`);
     client.user.setActivity(defaultActivity, { type: "PLAYING" });
     console.log(`Activity set to '${defaultActivity}'`);
 });
 
 client.on("message", (message) => {
+
+    if (logMessages) {
+        console.log(`${message.author.username} (${message.guild}): ${message.content}`);
+    }
 
     // command handler
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -93,13 +99,7 @@ client.on("message", (message) => {
     
     // execute command
     try {
-        // handle music commands
-        if (["play", "skip", "stop"].includes(commandName)) {
-            const serverQueue = client.queue.get(message.guild.id);
-            command.execute(message, args, serverQueue);
-        } else {
-            command.execute(message, args);
-        }
+        command.execute(message, args);
     } catch (error) {
         console.error("An error occurred executing a command:\n", error);
         message.channel.send(globalResponses.error);
