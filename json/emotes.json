@@ -307,10 +307,6 @@
         "id": "5a16ee718c22a247ead62d4a",
         "type": "bttv"
     },
-    "peepopains": {
-        "id": "5e0bf9c0031ec77bab473742",
-        "type": "bttv"
-    },
     "peeposad": {
         "id": "5a16ddca8c22a247ead62ceb",
         "type": "bttv"
@@ -341,6 +337,10 @@
     },
     "pepelaugh": {
         "id": "59b73909b27c823d5b1f6052",
+        "type": "bttv"
+    },
+    "pepepains": {
+        "id": "5e0bf9c0031ec77bab473742",
         "type": "bttv"
     },
     "pjsalt": {
