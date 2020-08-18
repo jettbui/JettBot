@@ -34,10 +34,17 @@ module.exports = {
             const emoteEmbed = new Discord.MessageEmbed()
                 .setColor((member.displayHexColor != "#000000") ? member.displayHexColor : "#969c9f")
                 .setAuthor((msg) ? `${member.displayName} says: ${msg}` : `${member.displayName} says`, user.displayAvatarURL())
-                .setThumbnail(emoteUrl)
                 .setTimestamp();
+                
+            if (emote.animated) {
+                emoteEmbed
+                    .setThumbnail(`${emoteUrl}.gif`)
+                message.channel.send(emoteEmbed);
+            } else {
+                emoteEmbed.setThumbnail(emoteUrl);
+                message.channel.send(emoteEmbed);
+            }
 
-            message.channel.send(emoteEmbed);
             message.delete();
         } else {
             message.channel.send(emoteResponses.noEmote);

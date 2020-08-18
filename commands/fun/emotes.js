@@ -15,7 +15,8 @@ module.exports = {
             .setColor(emotesEmbed.color)
             .setTitle(emotesEmbed.title)
             .setAuthor(emotesEmbed.author.name, emotesEmbed.author.icon_url)
-            .setFooter(emotesEmbed.footer);
+            .setFooter(emotesEmbed.footer.text);
+
         let emoteArr = []
 
         for (let key in emotes) {

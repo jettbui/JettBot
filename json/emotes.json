@@ -3,6 +3,11 @@
         "id": "274406",
         "type": "ffz"
     },
+    "3kool": {
+        "id": "5e2076b1bca2995f13fb9035",
+        "type": "bttv",
+        "animated": true
+    },
     "4head": {
         "id": "354",
         "type": "ttv"
@@ -51,13 +56,33 @@
         "id": "274629",
         "type": "ffz"
     },
+    "catjam": {
+        "id": "5f1b0186cf6d2144653d2970",
+        "type": "bttv",
+        "animated": true
+    },
     "cigrip": {
         "id": "54fa8fce01e468494b85b53c",
         "type": "bttv"
     },
+    "clap": {
+        "id": "55b6f480e66682f576dd94f5",
+        "type": "bttv",
+        "animated": true
+    },
     "cmonbruh": {
         "id": "84608",
         "type": "ttv"
+    },
+    "coffinpls": {
+        "id": "5ea1e580d023b362f638f54f",
+        "type": "bttv",
+        "animated": true
+    },
+    "coggers": {
+        "id": "5ab6f0ece1d6391b63498774",
+        "type": "bttv",
+        "animated": true
     },
     "coobruh": {
         "id": "333085",
@@ -111,17 +136,27 @@
         "id": "566c9fde65dbbdab32ec053e",
         "type": "bttv"
     },
+    "feelslagman": {
+        "id": "56758c29bf317838643c7e97",
+        "type": "bttv",
+        "animated": true
+    },
     "feelsokayman": {
-        "id": "145947",
-        "type": "ffz"
+        "id": "5803757f3d506fea7ee35267",
+        "type": "bttv"
+    },
+    "feelsrainman": {
+        "id": "57850b9df1bf2c1003a88644",
+        "type": "bttv",
+        "animated": true
     },
     "feelsstrongman": {
         "id": "64210",
         "type": "ffz"
     },
     "feelsweirdman": {
-        "id": "131597",
-        "type": "ffz"
+        "id": "5603731ce5fc5eff1de93229",
+        "type": "bttv"
     },
     "feelsweirdmanw": {
         "id": "208616",
@@ -135,25 +170,47 @@
         "id": "249060",
         "type": "ffz"
     },
+    "forsenpls": {
+        "id": "55e2096ea6fa8b261f81b12a",
+        "type": "bttv",
+        "animated": true
+    },
     "gaben": {
         "id": "54fa90ba01e468494b85b543",
         "type": "bttv"
+    },
+    "gachibass": {
+        "id": "57719a9a6bdecd592c3ad59b",
+        "type": "bttv",
+        "animated": true
     },
     "gachigasm": {
         "id": "55999813f0db38ef6c7c663e",
         "type": "bttv"
     },
     "gachihyper": {
-        "id": "196406",
-        "type": "ffz"
+        "id": "59143b496996b360ff9b807c",
+        "type": "bttv",
+        "animated": true
+    },
+    "gachipls": {
+        "id": "58868aa5afc2ff756c3f495e",
+        "type": "bttv",
+        "animated": true
     },
     "gaypride": {
         "id": "1064991",
         "type": "ttv"
     },
+    "guitartime": {
+        "id": "576befd71f520d6039622f7e",
+        "type": "bttv",
+        "animated": true
+    },
     "hackermans": {
         "id": "5b490e73cf46791f8491f6f4",
-        "type": "bttv"
+        "type": "bttv",
+        "animated": true
     },
     "hahaa": {
         "id": "555981336ba1901877765555",
@@ -211,6 +268,11 @@
         "id": "229486",
         "type": "ffz"
     },
+    "kkool": {
+        "id": "56c2cff2d9ec6bf744247bf1",
+        "type": "bttv",
+        "animated": true
+    },
     "kkrikey": {
         "id": "211044",
         "type": "ffz"
@@ -243,6 +305,11 @@
         "id": "68856",
         "type": "ttv"
     },
+    "modcheck": {
+        "id": "5d7eefb7c0652668c9e4d394",
+        "type": "bttv",
+        "animated": true
+    },
     "monkaeyes": {
         "id": "268204",
         "type": "ffz"
@@ -267,9 +334,19 @@
         "id": "214681",
         "type": "ffz"
     },
+    "monkax": {
+        "id": "58e5abdaf3ef4c75c9c6f0f9",
+        "type": "bttv",
+        "animated": true
+    },
     "mrdestructoid": {
         "id": "28",
         "type": "ttv"
+    },
+    "mufasapls": {
+        "id": "5e8f33288fb1ca5cde58a214",
+        "type": "bttv",
+        "animated": true
     },
     "nam": {
         "id": "566ca06065dbbdab32ec054e",
@@ -299,6 +376,11 @@
         "id": "54fa928f01e468494b85b54f",
         "type": "bttv"
     },
+    "peepoclap": {
+        "id": "5d38aaa592fc550c2d5996b8",
+        "type": "bttv",
+        "animated": true
+    },
     "peepoglad": {
         "id": "244322",
         "type": "ffz"
@@ -311,9 +393,24 @@
         "id": "5a16ddca8c22a247ead62ceb",
         "type": "bttv"
     },
+    "peeposimp": {
+        "id": "5e3a2c6cd736527d5cd26836",
+        "type": "bttv",
+        "animated": true
+    },
     "peepowtf": {
         "id": "267880",
         "type": "ffz"
+    },
+    "peped": {
+        "id": "5b1740221c5a6065a7bad4b5",
+        "type": "bttv",
+        "animated": true
+    },
+    "pepeds": {
+        "id": "5b444de56b9160327d12534a",
+        "type": "bttv",
+        "animated": true
     },
     "pepega": {
         "id": "5aca62163e290877a25481ad",
@@ -321,35 +418,84 @@
     },
     "pepegaaim": {
         "id": "5d0d7140ca4f4b50240ff6b4",
-        "type": "bttv"
+        "type": "bttv",
+        "animated": true
     },
     "pepegablind": {
         "id": "477296",
         "type": "ffz"
     },
+    "pepegachat": {
+        "id": "5f2e77591ab9be446c4e8d9b",
+        "type": "bttv",
+        "animated": true
+    },
     "pepegacredit": {
         "id": "5e9643a2d023b362f6381be1",
-        "type": "bttv"
+        "type": "bttv",
+        "animated": true
     },
     "pepegadriving": {
         "id": "5e6fa08bd112fc3725746dd4",
-        "type": "bttv"
+        "type": "bttv",
+        "animated": true
+    },
+    "pepegapls": {
+        "id": "5c04b07db4297124fa9d165e",
+        "type": "bttv",
+        "animated": true
     },
     "pepegareading": {
         "id": "5ec676e8fdee545e3064d17e",
-        "type": "bttv"
+        "type": "bttv",
+        "animated": true
+    },
+    "pepegashower": {
+        "id": "5e9fb09fce7cbf62fe1579b0",
+        "type": "bttv",
+        "animated": true
     },
     "pepehands": {
         "id": "231552",
         "type": "ffz"
     },
+    "pepejam": {
+        "id": "5b77ac3af7bddc567b1d5fb2",
+        "type": "bttv",
+        "animated": true
+    },
     "pepelaugh": {
         "id": "59b73909b27c823d5b1f6052",
         "type": "bttv"
     },
+    "pepemeltdown": {
+        "id": "5ba84271c9f0f66a9efc1c86",
+        "type": "bttv",
+        "animated": true
+    },
     "pepepains": {
         "id": "5e0bf9c0031ec77bab473742",
         "type": "bttv"
+    },
+    "pepepls": {
+        "id": "55898e122612142e6aaa935b",
+        "type": "bttv",
+        "animated": true
+    },
+    "pepesmoke": {
+        "id": "5b15162147c7bf3bfc0b9c76",
+        "type": "bttv",
+        "animated": true
+    },
+    "petthepeepo": {
+        "id": "5ec059009af1ea16863b2dec",
+        "type": "bttv",
+        "animated": true
+    },
+    "pianotime": {
+        "id": "5b4d2e45b7b52c3958c8f5cf",
+        "type": "bttv",
+        "animated": true
     },
     "pjsalt": {
         "id": "36",
@@ -371,9 +517,24 @@
         "id": "256055",
         "type": "ffz"
     },
+    "pphop": {
+        "id": "5a9578d6dcf3205f57ba294f",
+        "type": "bttv",
+        "animated": true
+    },
+    "ppoverheat": {
+        "id": "5b3e953a2c8a38720760c7f7",
+        "type": "bttv",
+        "animated": true
+    },
     "residentsleeper": {
         "id": "245",
         "type": "ttv"
+    },
+    "ricardoflick": {
+        "id": "5bc2143ea5351f40921080ee",
+        "type": "bttv",
+        "animated": true
     },
     "rlytho": {
         "id": "58127",
@@ -395,13 +556,38 @@
         "id": "90076",
         "type": "ttv"
     },
+    "sumsmash": {
+        "id": "5af84b9e766af63db43bf6b9",
+        "type": "bttv",
+        "animated": true
+    },
+    "teatime": {
+        "id": "56f6eb647ee3e8fc6e4fe48e",
+        "type": "bttv",
+        "animated": true
+    },
+    "tridance": {
+        "id": "5d1e70f498539c4801cc3811",
+        "type": "bttv",
+        "animated": true
+    },
     "trieasy": {
         "id": "164471",
         "type": "ffz"
     },
+    "trifi": {
+        "id": "5df0742ee7df1277b6070125",
+        "type": "bttv",
+        "animated": true
+    },
     "trihard": {
         "id": "120232",
         "type": "ttv"
+    },
+    "trikool": {
+        "id": "59a6d3dedccaf930aa8f3de1",
+        "type": "bttv",
+        "animated": true
     },
     "van": {
         "id": "269928",
@@ -414,6 +600,11 @@
     "waitwhat": {
         "id": "55cbeb8f8b9c49ef325bf738",
         "type": "bttv"
+    },
+    "waytoodank": {
+        "id": "5ad22a7096065b6c6bddf7f3",
+        "type": "bttv",
+        "animated": true
     },
     "weirdchamp": {
         "id": "262468",
@@ -438,6 +629,31 @@
     "wutface": {
         "id": "28087",
         "type": "ttv"
+    },
+    "xqcditch": {
+        "id": "5c6934c724de827d9bbb4723",
+        "type": "bttv",
+        "animated": true
+    },
+    "xqcjam": {
+        "id": "5c5c97604c7f0220299e945c",
+        "type": "bttv",
+        "animated": true
+    },
+    "xqcslam": {
+        "id": "5cb9176c750fbb4a2533fc42",
+        "type": "bttv",
+        "animated": true
+    },
+    "xqcsmash": {
+        "id": "5b4ce43d0197c6394dc49465",
+        "type": "bttv",
+        "animated": true
+    },
+    "xqctechno": {
+        "id": "5ef4b2b2f58ddc0de9888b61",
+        "type": "bttv",
+        "animated": true
     },
     "yep": {
         "id": "418189",
