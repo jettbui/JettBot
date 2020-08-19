@@ -12,7 +12,19 @@ module.exports = {
     guildOnly: false,
     execute(message, args) {
         const emote = emotes[args[0].toLowerCase()];
-        const msg = (args[1]) ? args.splice(1).join(" ") : null;
+        const msgArr = [];
+
+        for (let i = 1; i < args.length; i++) { // parse mentions
+            const mention = args[i].match(/^<@!?(\d+)>$/);
+            if (mention) {
+                const user = message.client.users.cache.get(mention[1]);
+                msgArr[i - 1] = `@${user.username}`;
+            } else {
+                msgArr[i - 1] = args[i];
+            }
+        }
+
+        let msg = (msgArr.length) ? msgArr.join(" ") : null;
 
         if (emote) {
             let emoteUrl;
@@ -34,17 +46,10 @@ module.exports = {
             const emoteEmbed = new Discord.MessageEmbed()
                 .setColor((member.displayHexColor != "#000000") ? member.displayHexColor : "#969c9f")
                 .setAuthor((msg) ? `${member.displayName} says: ${msg}` : `${member.displayName} says`, user.displayAvatarURL())
+                .setThumbnail((emote.animated) ? `${emoteUrl}.gif` : emoteUrl)
                 .setTimestamp();
-                
-            if (emote.animated) {
-                emoteEmbed
-                    .setThumbnail(`${emoteUrl}.gif`)
-                message.channel.send(emoteEmbed);
-            } else {
-                emoteEmbed.setThumbnail(emoteUrl);
-                message.channel.send(emoteEmbed);
-            }
-
+            
+            message.channel.send(emoteEmbed);
             message.delete();
         } else {
             message.channel.send(emoteResponses.noEmote);
