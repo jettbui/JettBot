@@ -31,7 +31,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed();
 
         if (category === "all") { // all commands
-            const allCommands = commands.filter((cmd) => categories.includes(cmd.category));
+            const allCommands = commands.filter((cmd) => categories.includes(cmd.category) && !cmd.disabled);
 
             embed
                 .setColor(allEmbed.color)
@@ -39,6 +39,8 @@ module.exports = {
                 .setTitle(allEmbed.title)
                 .setFooter(allEmbed.footer.text);
 
+            // TODO alphabetically sort commands
+            
             for (const command of allCommands.array()) {
                 if (command.usage)
                     embed
