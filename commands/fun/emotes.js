@@ -1,4 +1,4 @@
-const Discord = require("discord.js"),
+const { MessageEmbed } = require("discord.js"),
     emotes = require("../../json/emotes.json"),
     { emotesEmbed } = require("../../json/embeds.json");
 
@@ -11,7 +11,7 @@ module.exports = {
     guildOnly: false,
     execute(message) {
 
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setColor(emotesEmbed.color)
             .setTitle(emotesEmbed.title)
             .setAuthor(emotesEmbed.author.name, emotesEmbed.author.icon_url)
@@ -45,7 +45,7 @@ module.exports = {
         embed.addField("G-M", gmEmotes.join(", "));
         embed.addField("N-Z", nzEmotes.join(", "));
 
-        message.channel.send(embed);
+        message.author.send(embed);
     },
     alphabetize(arr) {
         return Object.values(
