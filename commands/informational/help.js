@@ -57,7 +57,7 @@ module.exports = {
                         .setAuthor(customizationEmbed.author.name, customizationEmbed.author.icon_url)
                         .setTitle(customizationEmbed.title)
                         .setFooter(customizationEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "customization");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "customization" && !cmd.disabled);
                     break;
                 case "fun":
                     embed
@@ -65,7 +65,7 @@ module.exports = {
                         .setAuthor(funEmbed.author.name, funEmbed.author.icon_url)
                         .setTitle(funEmbed.title)
                         .setFooter(funEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "fun");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "fun" && !cmd.disabled);
                     break;
                 case "informational":
                     embed
@@ -73,7 +73,7 @@ module.exports = {
                         .setAuthor(informationalEmbed.author.name, informationalEmbed.author.icon_url)
                         .setTitle(informationalEmbed.title)
                         .setFooter(informationalEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "informational");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "informational" && !cmd.disabled);
                     break;
                 case "moderation":
                     embed
@@ -81,7 +81,7 @@ module.exports = {
                         .setAuthor(moderationEmbed.author.name, moderationEmbed.author.icon_url)
                         .setTitle(moderationEmbed.title)
                         .setFooter(moderationEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "moderation");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "moderation" && !cmd.disabled);
                     break;
                 case "music":
                     embed
@@ -89,7 +89,7 @@ module.exports = {
                         .setAuthor(musicEmbed.author.name, musicEmbed.author.icon_url)
                         .setTitle(musicEmbed.title)
                         .setFooter(musicEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "music");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "music" && !cmd.disabled);
                     break;
                 case "utility":
                     embed
@@ -97,7 +97,7 @@ module.exports = {
                         .setAuthor(utilityEmbed.author.name, utilityEmbed.author.icon_url)
                         .setTitle(utilityEmbed.title)
                         .setFooter(utilityEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "utility");
+                    categoricalCommands = commands.filter((cmd) => cmd.category === "utility" && !cmd.disabled);
                     break;
             }
 
