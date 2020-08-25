@@ -46,6 +46,23 @@
         "invalidUser": "That user does not exist.",
         "selfUser": "You cannot kick yourself."
     },
+    "musicResponses": {
+        "error": "An error occurred trying to play a song.",
+        "invalidPlaylist": "Unable to fetch playlist.",
+        "invalidSong": "Unable to fetch song.",
+        "invalidVoiceChannel": "You must be in the same voice channel as the bot.",
+        "invalidVolume": "Volume must be a number within 1-10.",
+        "noSong": "There is no song currently playing.",
+        "noVoiceChannel": "You must be in a voice channel.",
+        "triviaRunning": "There is currently a trivia running."
+    },
+    "musictriviaResponses": {
+        "isNotParticipating": "You must be participating in the trivia",
+        "noTriviaRunning": "There is no trivia running.",
+        "noVoiceChannel": "You must be in a voice channel.",
+        "triviaRunning": "There is already a trivia running.",
+        "triviaStopped": "Music trivia stopped."
+    },
     "purgeResponses": {
         "invalidArgument": "Argument must be a number.",
         "invalidPermission": "You do not have permission to manage messages.",

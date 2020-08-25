@@ -5,6 +5,31 @@ const Discord = require("discord.js"),
     { prefix, token, defaultCooldown, defaultActivity, ownerId, logMessages } = require("./config.json"),
     { globalResponses } = require("./json/responses.json");
 
+    
+// extend guild structure
+Discord.Structures.extend("Guild", (Guild) => {
+    class ExtendedGuild extends Guild {
+        constructor(client, data) {
+            super(client, data);
+            this.musicData = { // music data
+                queue: [],
+                isPlaying: false,
+                nowPlaying: null,
+                songDispatcher: null,
+                volume: 0.3
+            };
+            this.triviaData = { // music trivia data
+                isTriviaRunning: false,
+                wasTriviaEndCalled: false,
+                triviaQueue: [],
+                triviaScore: new Map()
+            };
+        }
+    }
+    return ExtendedGuild;
+});
+
+// instantiate client
 console.log("Starting JettBot...\n");
 const client = new Client();
 client.commands = new Discord.Collection();

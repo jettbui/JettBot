@@ -169,5 +169,54 @@
                 "text": "Copyright JettBot, © 2020"
             }
         }
+    },
+    "musicEmbeds": {
+        "queueEmbed": {
+            "color": "#0099ff"
+        },
+        "queuedEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Added to Queue"
+            }
+        },
+        "skipEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Song Skipped"
+            }
+        },
+        "songDetailedEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Now Playing"
+            }
+        },
+        "songEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Now Playing"
+            }
+        },
+        "volumeEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Volume Changed"
+            }
+        }
+    },
+    "musictriviaEmbeds": {
+        "answerEmbed": {
+            "color": "#0099ff"
+        },
+        "resultsEmbed": {
+            "color": "#0099ff",
+            "title": "<:cd:746092266028007506> Music Trivia Results"
+        },
+        "startEmbed": {
+            "color": "#0099ff",
+            "title": "<:cd:746092266028007506> Music Trivia Started",
+            "description": "You have 30 seconds to guess the artist and name of the song!"
+        }
     }
 }
