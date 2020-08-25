@@ -1,0 +1,481 @@
+{
+    "_2020": [
+        {
+            "url": "https://www.youtube.com/watch?v=83xBPCw5hh4",
+            "artist": "dababy",
+            "title": "rockstar"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=JFm7YDVlqnI",
+            "artist": "drake",
+            "title": "laugh now cry later"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=eqMj9DTQcAQ",
+            "artist": "drake",
+            "title": "toosie slide"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=7-x3uD5z1bQ",
+            "artist": "harry styles",
+            "title": "watermelon sugar"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=V_jHc_n0p9c",
+            "artist": "lil mosey",
+            "title": "blueberry faygo"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=uLHqpjW3aDs",
+            "artist": "roddy rich",
+            "title": "the box"
+        }
+    ],
+    "classics": [
+        {
+            "url": "https://www.youtube.com/watch?v=4-jBiumYmXk",
+            "artist": "adele",
+            "title": "hello"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=hLQl3WQQoQ0",
+            "artist": "adele",
+            "title": "someone like you"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=SR6iYWJxHqs",
+            "artist": "bruno mars",
+            "title": "grenade"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=pXRviuL6vMY",
+            "artist": "twenty one pilots",
+            "title": "stressed out"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=fLexgOxsZu0",
+            "artist": "bruno mars",
+            "title": "the lazy song"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=QK8mJJJvaes",
+            "artist": "macklemore",
+            "title": "thrift shop"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=fWNaR-rxAic",
+            "artist": "carly rae jepsen",
+            "title": "call me maybe"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=0J2QdDbelmY",
+            "artist": "the white stripes",
+            "title": "seven nation army"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=y1nM4OKvoXw",
+            "artist": "flo rida",
+            "title": "low"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=lOxb_SW4Cfg",
+            "artist": "kanye west",
+            "title": "gold digger"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ADIyIlO-_Ug",
+            "artist": "snoop dogg",
+            "title": "the next episode"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=F57P9C4SAW4",
+            "artist": "katy perry",
+            "title": "california gurls"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Fi8rsCncwF8",
+            "artist": "outkast",
+            "title": "hey ya"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=nlcIKh6sBtc",
+            "artist": "lorde",
+            "title": "royals"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=uJtaKS1ARoE",
+            "artist": "drake",
+            "title": "hotline bling"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=MHU6vvsTnbI",
+            "artist": "maroon 5",
+            "title": "this love"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Y4QGPWLY-EM",
+            "artist": "eiffel 65",
+            "title": "blue"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=IGuSsEfZwDs",
+            "artist": "kanye west",
+            "title": "touch the sky"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=_ovdm2yX4MA",
+            "artist": "avicii",
+            "title": "levels"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=JiUNTdFX8G8",
+            "artist": "rihanna",
+            "title": "love the way you lie"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=xR6lFaPTxh0",
+            "artist": "wiz khalifa",
+            "title": "black and yellow"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=NNM2kEBGiRs",
+            "artist": "maroon 5",
+            "title": "moves like jagger"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Q4Y-FbeCX14",
+            "artist": "kelly clarkson",
+            "title": "stronger"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=aS85AvLl9Ik",
+            "artist": "flo rida",
+            "title": "whistle"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ziN7Y1M1v8s",
+            "artist": "bruno mars",
+            "title": "uptown funk"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=8wP2AsnTfac",
+            "artist": "the weeknd",
+            "title": "cant feel my face"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Coq-OlEdZQ8",
+            "artist": "lmfao",
+            "title": "party rock anthem"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=yG60iRJwmfA",
+            "artist": "jonas brothers",
+            "title": "sucker"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Ys3FvbIybW4",
+            "artist": "Brockhampton",
+            "title": "Face"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=VcyFfcJbyeM",
+            "artist": "Lil Uzi Vert",
+            "title": "XO Tour Llif3"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ClhLNUPqv8Q",
+            "artist": "Dua Lipa",
+            "title": "New Rules"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=AMtN4sOvhqY",
+            "artist": "Taylor Swift",
+            "title": "Lover"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=5gBeLN2Jkng",
+            "artist": "Charlie Puth",
+            "title": "Attention"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=yNk8OoBpQMI",
+            "artist": "J Cole",
+            "title": "No Role Modelz"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=9Imk7kIpgos",
+            "artist": "Sam Smith",
+            "title": "Stay With Me"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ZBuPhinZVzk",
+            "artist": "Amine",
+            "title": "Caroline"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=7pzOBI3PD8E",
+            "artist": "The Neighbourhood",
+            "title": "Sweater Weather"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Tm6-SEfRoBA",
+            "artist": "Sia",
+            "title": "Chandelier"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=0i1o9lSUuI8",
+            "artist": "Taylor Swift",
+            "title": "Delicate"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=2RAI2IEtbFs",
+            "artist": "Disclosure",
+            "title": "Latch"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=kqaGZYDGcUw",
+            "artist": "rihanna",
+            "title": "We Found Love"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Cs_LnAdfKas",
+            "artist": "Childish Gambino",
+            "title": "This Is America"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=sPQrcSo2ee4",
+            "artist": "Alabama Shakes",
+            "title": "Dont Wanna Fight"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Cf6cR6Nve70",
+            "artist": "Ariana Grande",
+            "title": "God Is a Woman"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=bCQAdXEbdPM",
+            "artist": "frank ocean",
+            "title": "Chanel"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=t0imaSCnSuA",
+            "artist": "Hozier",
+            "title": "Take Me to Church"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Adtadg-UBYA",
+            "artist": "Post Malone",
+            "title": "Congratulations"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Gx6xnVQuFzw",
+            "artist": "Kendrick Lamar",
+            "title": "Humble"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=YV3ExBDBv_I",
+            "artist": "David Bowie",
+            "title": "Blackstar"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=87xa7w2QymA",
+            "artist": "Childish Gambino",
+            "title": "Redbone"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=4bFrM_7CdAM",
+            "artist": "Lykke Li",
+            "title": "I Follow Rivers"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ZwyiZLgiP6w",
+            "artist": "Travis Scott",
+            "title": "Sicko Mode"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=4-TbQnONe_w",
+            "artist": "bad guy",
+            "title": "Billie Eilish"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=DSxg7pNYQhI",
+            "artist": "ac/dc",
+            "title": "back in black"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=axAtWjn3MfI",
+            "artist": "queen",
+            "title": "Bohemian Rhapsody"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=50eVxQGkiok",
+            "artist": "Guns N Roses",
+            "title": "Sweet Child O' Mine"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=tux7eKFZn30",
+            "artist": "Amy Winehouse",
+            "title": "Back to Black"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ytBR7ET_6uU",
+            "artist": "Owl City",
+            "title": "Fireflies"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=oGTBax-Cu4Q",
+            "artist": "Flo Rida",
+            "title": "Right Round"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Wa6ZkaJfYso",
+            "artist": "Eminem",
+            "title": "Crack a Bottle"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Nn5IvIwBBec",
+            "artist": "Kelly Clarkson",
+            "title": "My Life Would Suck Without You"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=uHV3t4f8TZM",
+            "artist": "Soulja Boy",
+            "title": "Crank That"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=PoaT6WXUV_M",
+            "artist": "Plain White T's",
+            "title": "Hey there delilah"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=tst-pb3YCEc",
+            "artist": "Rihanna",
+            "title": "Umbrella"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=ELIw88IeSeE",
+            "artist": "Akon",
+            "title": "Don't Matter"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=foaLW5DGhpI",
+            "artist": "Beyonce",
+            "title": "Irreplaceable"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=FCR9qFSgZYE",
+            "artist": "Nelly furtado",
+            "title": "promiscuous"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=EPKHC59Fpko",
+            "artist": "Shakira",
+            "title": "Hips Don't Lie"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=x1TsfShR5ZY",
+            "artist": "Justin Timberlake",
+            "title": "My Love"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=RmNTAvnSais",
+            "artist": "Daniel Powter",
+            "title": "Bad Day"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=9t7Y3puRKM0",
+            "artist": "Mariah Carey",
+            "title": "We belong together"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=IZKBa6bvUjo",
+            "artist": "50 Cent",
+            "title": "Candy Shop"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=B8FTyEdLjqA",
+            "artist": "Mario",
+            "title": "Let Me Love You"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=GTpkYtYYi7o",
+            "artist": "Usher",
+            "title": "My Boo"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=gMWTIYY5j54",
+            "artist": "Outkast",
+            "title": "Hey ya"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=eYaSNZRbFsA",
+            "artist": "Eminem",
+            "title": "Not Afraid"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=z6wjKlZjYfQ",
+            "artist": "Bruno Mars",
+            "title": "Nothin' on You"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=n1lfYh-aUk0",
+            "artist": "Katy Perry",
+            "title": "Firework"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=GvgJEznqtms",
+            "artist": "far east movement",
+            "title": "Like A G6"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=0BsLd4Y060Q",
+            "artist": "Lady Gaga",
+            "title": "Born This Way"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=4xBQ_iydufE",
+            "artist": "LMFAO",
+            "title": "Sexy And I Know It"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=Odq6cZulKA8",
+            "artist": "Bruno Mars",
+            "title": "Locked Out Of Heaven"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=cpzO4OGP9q0",
+            "artist": "Miley Cyrus",
+            "title": "Wrecking Ball"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=H0m3Lfkzcw4",
+            "artist": "Pharrell Williams",
+            "title": "Happy"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=73_DOquGBD4",
+            "artist": "John Legend",
+            "title": "All of Me"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=IlwIcTsmERw",
+            "artist": "Magic",
+            "title": "Rude"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=9qXAaoBePVg",
+            "artist": "OMI",
+            "title": "Cheerleader"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=h-_xQXCcc2E",
+            "artist": "Justin Bieber",
+            "title": "What Do You Mean?"
+        },
+        {
+            "url": "https://www.youtube.com/watch?v=3MQMQTBTVHU",
+            "artist": "The Weeknd",
+            "title": "The Hills"
+        }
+    ]
+}
