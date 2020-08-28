@@ -144,17 +144,15 @@ module.exports = {
             }`;
         return duration;
     },
-    playSong(message, queue) {
+    playSong(message, queue) { // removed { quality: "highestaudio", highWaterMark: 1 << 25 }
         let voiceChannel;
         queue[0].voiceChannel
             .join()
             .then((connection) => {
                 const dispatcher = connection
-                    .play(ytdl(queue[0].url), { quality: "highestaudio", highWaterMark: 1 << 25 })
+                    .play(ytdl(queue[0].url, { quality: "highestaudio" }))
                     .on("start", () => {
                         message.guild.musicData.songDispatcher = dispatcher;
-                        console.log("Dispatcher Fresh");
-                        console.log(dispatcher);
                         dispatcher.setVolume(message.guild.musicData.volume);
 
                         const embed = new MessageEmbed()
@@ -173,7 +171,6 @@ module.exports = {
                         return;
                     })
                     .on("finish", () => {
-                        console.log("Song Finished/Skip Called");
                         if (queue.length >= 1) {
                             return this.playSong(message, queue);
                         } else {
@@ -191,7 +188,7 @@ module.exports = {
                         message.guild.musicData.isPlaying = false;
                         message.guild.musicData.nowPlaying = null;
                         message.guild.musicData.songDispatcher = null;
-                        voiceChannel.leave();
+                        message.guild.me.voice.channel.leave();
                         return;
                     });
             })
@@ -202,7 +199,7 @@ module.exports = {
                 message.guild.musicData.isPlaying = false;
                 message.guild.musicData.nowPlaying = null;
                 message.guild.musicData.songDispatcher = null;
-                return voiceChannel.leave();
+                return message.guild.me.voice.channel.leave();
             })
     }
 };

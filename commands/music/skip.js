@@ -1,6 +1,6 @@
 const { musicEmbeds } = require("../../json/embeds.json"),
-    { musicResponses } = require("../../json/responses.json");
-const { MessageEmbed } = require("discord.js");
+    { musicResponses } = require("../../json/responses.json"),
+    { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "skip",
@@ -14,6 +14,7 @@ module.exports = {
     async execute(message) {
         const voiceChannel = message.member.voice.channel;
         const currentSong = message.guild.musicData.nowPlaying;
+        const user = message.member.user;
 
         // validity checks
         if (!voiceChannel)
@@ -30,11 +31,9 @@ module.exports = {
             .setAuthor(musicEmbeds.skipEmbed.author.name)
             .setTitle(`<:musical_note:746147269488803931>   ${currentSong.title}`)
             .setThumbnail(currentSong.thumbnail)
-            .setFooter(`Skipped by ${currentSong.userDisplayName}`, currentSong.userAvatar);
+            .setFooter(`Skipped by ${user.username}`, user.avatarURL());
 
-        console.log("Dispatcher Broke");
-        console.log(message.guild.musicData.songDispatcher);
-        message.guild.musicData.songDispatcher.end(); // FIXME NOT WORKING
+        message.guild.musicData.songDispatcher.end();
         message.channel.send(embed);
     },
 };
