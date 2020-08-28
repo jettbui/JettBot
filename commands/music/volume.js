@@ -11,7 +11,6 @@ module.exports = {
     usage: "[1-100]",
     cooldown: 5,
     guildOnly: true,
-    disabled: true,
     async execute(message, args) {
         const voiceChannel = message.member.voice.channel;
         const volume = parseInt(args[0]);

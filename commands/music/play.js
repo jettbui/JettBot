@@ -17,7 +17,6 @@ module.exports = {
     usage: "<link>",
     cooldown: 5,
     guildOnly: true,
-    disabled: false,
     async execute(message, args) {
         const voiceChannel = message.member.voice.channel;
         let query = args.join(" ");

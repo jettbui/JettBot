@@ -10,7 +10,6 @@ module.exports = {
     args: false,
     cooldown: 5,
     guildOnly: true,
-    disabled: true,
     async execute(message) {
         const voiceChannel = message.member.voice.channel;
         const currentSong = message.guild.musicData.nowPlaying;
