@@ -35,7 +35,7 @@ module.exports = {
         if (!voiceChannel) return message.channel.send(musictriviaResponses.noVoiceChannel);
         if (message.guild.triviaData.isTriviaRunning) return message.channel.send(musictriviaResponses.triviaRunning);
 
-        const songsFile = fs.readFileSync("json/triviasongs.json", "utf8");
+        const songsFile = fs.readFileSync("json/triviaSongs.json", "utf8");
         let songsArray = null;
 
         // parse options
