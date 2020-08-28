@@ -12,7 +12,9 @@ module.exports = {
     guildOnly: true,
     async execute(message) {
         // validity checks
-        if (!message.guild.musicData.isPlaying && !message.guild.musicData.nowPlaying || message.guild.triviaData.isTriviaRunning)
+        if (!message.guild.musicData.isPlaying && !message.guild.musicData.nowPlaying)
+            return message.channel.send(musicResponses.noSong);
+        if (message.guild.triviaData.isTriviaRunning)
             return message.channel.send(musicResponses.triviaRunning);
 
         const song = message.guild.musicData.nowPlaying;

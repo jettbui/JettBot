@@ -11,12 +11,14 @@ module.exports = {
     cooldown: 5,
     guildOnly: true,
     async execute(message) {
+        const currSong = message.guild.musicData.nowPlaying;
+
         // validity checks
         if (message.guild.triviaData.isTriviaRunning) return message.channel.send(musicResponses.triviaRunning);
-        if (message.guild.musicData.queue.length == 0) return message.channel.send(musicResponses.noSong);
+        if (message.guild.musicData.queue.length == 0 && !currSong) return message.channel.send(musicResponses.noSong);
 
         const queueList = [];
-        queueList.push(message.guild.musicData.nowPlaying.title);
+        queueList.push(currSong.title);
         message.guild.musicData.queue.slice(0, 10).forEach((s) => {
             queueList.push(s.title);
         });
@@ -25,7 +27,7 @@ module.exports = {
             .setColor(musicEmbeds.queueEmbed.color)
             .setTitle(`Music Queue - ${message.guild.musicData.queue.length + 1} songs`);
 
-        for (let i = 0; i < queueList.length - 1; i++) {
+        for (let i = 0; i < queueList.length; i++) {
             embed.addField(`${(i == 0) ? "Now Playing": i + 1}:`, queueList[i]);
         }
 
