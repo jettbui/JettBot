@@ -198,10 +198,16 @@
                 "name": "Now Playing"
             }
         },
+        "stopEmbed": {
+            "color": "#0099ff",
+            "author": {
+                "name": "Music Stopped"
+            }
+        },
         "volumeEmbed": {
             "color": "#0099ff",
             "author": {
-                "name": "Volume Changed"
+                "name": "Music Volume"
             }
         }
     },
