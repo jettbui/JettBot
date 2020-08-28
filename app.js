@@ -1,13 +1,13 @@
-const Discord = require("discord.js"),
+const { Structures, Collection } = require("discord.js"),
     Client = require("./client/Client"),
     fs = require("fs"),
     { exit } = require("process"),
     { prefix, token, defaultCooldown, defaultActivity, ownerId, logMessages } = require("./config.json"),
     { globalResponses } = require("./json/responses.json");
 
-    
+
 // extend guild structure
-Discord.Structures.extend("Guild", (Guild) => {
+Structures.extend("Guild", (Guild) => {
     class ExtendedGuild extends Guild {
         constructor(client, data) {
             super(client, data);
@@ -32,8 +32,6 @@ Discord.Structures.extend("Guild", (Guild) => {
 // instantiate client
 console.log("Starting JettBot...\n");
 const client = new Client();
-client.commands = new Discord.Collection();
-client.cooldowns = new Discord.Collection();
 
 // import commands
 console.log("Loading the following commands:");
@@ -62,7 +60,7 @@ console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join
 // client events
 client.on("ready", () => {
     console.log("Online on the following servers:")
-    client.guilds.cache.forEach((server) => {console.log(`- ${server.name}`)});
+    client.guilds.cache.forEach((server) => { console.log(`- ${server.name}`) });
     console.log(`Logged in as ${client.user.tag}.\n`);
     client.user.setActivity(defaultActivity, { type: "PLAYING" });
     console.log(`Activity set to '${defaultActivity}'`);
@@ -81,13 +79,13 @@ client.on("message", (message) => {
     const commandName = args.shift().toLowerCase();
 
     const command = client.commands.get(commandName)
-                    || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
+        || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
     if (!command)
         return message.channel.send(globalResponses.noCommand);
-    
+
     // check context
-    if (command.disabled)
+    if (command.disabled && message.author.id !== ownerId)
         return message.channel.send(globalResponses.commandDisabled);
     if (command.guildOnly && message.channel.type !== "text")
         return message.channel.send(globalResponses.serverOnly);
@@ -106,7 +104,7 @@ client.on("message", (message) => {
 
     // check cooldown
     if (!client.cooldowns.has(command.name))
-        client.cooldowns.set(command.name, new Discord.Collection());
+        client.cooldowns.set(command.name, new Collection());
 
     const now = Date.now();
     const timestamps = client.cooldowns.get(command.name);
@@ -121,13 +119,34 @@ client.on("message", (message) => {
 
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-    
+
     // execute command
     try {
         command.execute(message, args);
     } catch (error) {
         console.error("An error occurred executing a command:\n", error);
         message.channel.send(globalResponses.error);
+    }
+});
+
+client.on('voiceStateUpdate', async (___, newState) => {
+    if (
+        newState.member.user.bot &&
+        !newState.channelID &&
+        newState.guild.musicData.songDispatcher &&
+        newState.member.user.id == client.user.id
+    ) {
+        newState.guild.musicData.queue.length = 0;
+        newState.guild.musicData.songDispatcher.end();
+        return;
+    }
+    if (
+        newState.member.user.bot &&
+        newState.channelID &&
+        newState.member.user.id == client.user.id &&
+        !newState.selfDeaf
+    ) {
+        newState.setSelfDeaf(true);
     }
 });
 
