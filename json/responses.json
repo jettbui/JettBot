@@ -5,6 +5,7 @@
         "error": "An error has occurred. Check logs for details.",
         "invalidArgs": "Invalid arguments provided.",
         "noCommand": "That command does not exist.",
+        "noPermission": "You do not have permission to use that command.",
         "notAuthorized": "Only authorized users may use this command.",
         "serverOnly": "You may only use this command in a server."
     },
@@ -24,7 +25,6 @@
     },
     "banResponses": {
         "noPermission": "I do not have permission to ban that user.",
-        "invalidPermission": "You do not have permission to ban users.",
         "invalidUser": "That user does not exist.",
         "selfUser": "You cannot ban yourself."
     },
@@ -42,7 +42,6 @@
     },
     "kickResponses": {
         "noPermission": "I do not have permission to kick that user.",
-        "invalidPermission": "You do not have permission to kick users.",
         "invalidUser": "That user does not exist.",
         "selfUser": "You cannot kick yourself."
     },
@@ -54,7 +53,8 @@
         "invalidVolume": "Volume must be a number within 1-100.",
         "noSong": "There is no song currently playing.",
         "noVoiceChannel": "You must be in a voice channel.",
-        "triviaRunning": "There is currently a trivia running."
+        "triviaRunning": "There is currently a trivia running.",
+        "voteRunning": "There is already a skip vote running."
     },
     "musictriviaResponses": {
         "isNotParticipating": "You must be participating in the trivia",
@@ -65,7 +65,6 @@
     },
     "purgeResponses": {
         "invalidArgument": "Argument must be a number.",
-        "invalidPermission": "You do not have permission to manage messages.",
         "invalidRange": "Amount must be within 1 and 50."
     },
     "rollResponses": {

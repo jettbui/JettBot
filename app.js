@@ -1,4 +1,4 @@
-const { Structures, Collection } = require("discord.js"),
+const { Structures, Collection, PartialTextBasedChannel } = require("discord.js"),
     Client = require("./client/Client"),
     fs = require("fs"),
     { exit } = require("process"),
@@ -14,6 +14,8 @@ Structures.extend("Guild", (Guild) => {
             this.musicData = { // music data
                 queue: [],
                 isPlaying: false,
+                skipVoteRunning: false,
+                skipCollector: null,
                 nowPlaying: null,
                 songDispatcher: null,
                 volume: 0.3
@@ -59,7 +61,7 @@ console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join
 
 // client events
 client.on("ready", () => {
-    console.log("Online on the following servers:")
+    console.log("Online on the following servers: Unavailable")
     client.guilds.cache.forEach((server) => { console.log(`- ${server.name}`) });
     console.log(`Logged in as ${client.user.tag}.\n`);
     client.user.setActivity(defaultActivity, { type: "PLAYING" });
@@ -91,6 +93,15 @@ client.on("message", (message) => {
         return message.channel.send(globalResponses.serverOnly);
     if (command.devOnly && message.author.id != ownerId)
         return message.channel.send(globalResponses.notAuthorized);
+
+    // check permissions
+    if (command.permissions !== undefined && command.permissions.length) {
+        let validPerms = false;
+        command.permissions.forEach((permission) => {
+            if (!message.member.hasPermission(permission)) validPerms = true;
+        });
+        if (validPerms) return message.channel.send(globalResponses.noPermission);
+    }
 
     // check args
     if (command.args && !args.length) {

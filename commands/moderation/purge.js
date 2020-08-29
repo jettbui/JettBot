@@ -5,6 +5,7 @@ module.exports = {
     description: "Clears messsages in the current channel",
     category: "moderation",
     aliases: ["prune", "clear"],
+    permissions: ["MANAGE_MESSAGES"],
     args: true,
     usage: "<amount>",
     guildOnly: true,
@@ -12,7 +13,6 @@ module.exports = {
         const amount = parseInt(args[0]);
 
         // validity checks
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(purgeResponses.invalidPermission);
         if (isNaN(amount)) return message.channel.send(purgeResponses.invalidArgument);
         if (amount < 1 || amount > 50) return message.channel.send(purgeResponses.invalidRange);
 

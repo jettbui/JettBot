@@ -5,6 +5,7 @@ module.exports = {
     description: "Ban a member from the server",
     category: "moderation",
     aliases: [],
+    permissions: ["BAN_MEMBERS"],
     args: true,
     usage: "<user>",
     cooldown: 8,
@@ -14,7 +15,6 @@ module.exports = {
         let reason = args.slice(1).join(" ");
 
         // validity checks
-        if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send(banResponses.invalidPermission);
         if (!user) return message.channel.send(banResponses.invalidUser);
         if (user === message.author) return message.channel.send(banResponses.selfUser);
         if (!message.guild.member(user).bannable) return message.channel.send(banResponses.noPermission);

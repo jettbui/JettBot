@@ -6,6 +6,7 @@ module.exports = {
     category: "moderation",
     aliases: [],
     args: true,
+    permissions: ["KICK_MEMBERS"],
     usage: "<user>",
     cooldown: 8,
     guildOnly: true,
@@ -14,7 +15,6 @@ module.exports = {
         let reason = args.slice(1).join(" ");
 
         // validity checks
-        if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send(kickResponses.invalidPermission);
         if (!user) return message.channel.send(kickResponses.invalidUser);
         if (user === message.author) return message.channel.send(kickResponses.selfUser);
         if (!message.guild.member(user).kickable) return message.channel.send(kickResponses.noPermission);
