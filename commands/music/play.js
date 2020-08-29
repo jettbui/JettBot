@@ -75,7 +75,7 @@ module.exports = {
                         .setColor(musicEmbeds.queuedEmbed.color)
                         .setAuthor(musicEmbeds.queuedEmbed.author.name)
                         .setTitle(`<:musical_note:746147269488803931>   ${songObj.title}`)
-                        .setThumbnail(song.thumbnail)
+                        .setThumbnail(songObj.thumbnail)
                         .addField("Duration", songObj.duration)
                         .setFooter(`Requested by ${songObj.userDisplayName}`, songObj.userAvatar);
                     return message.channel.send(embed)
