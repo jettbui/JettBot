@@ -209,6 +209,9 @@
             "author": {
                 "name": "Music Volume"
             }
+        },
+        "voteSkipEmbed": {
+            "color": "#0099ff"
         }
     },
     "musictriviaEmbeds": {
