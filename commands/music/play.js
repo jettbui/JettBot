@@ -1,5 +1,3 @@
-const { toUpperCase } = require("ffmpeg-static");
-
 const { MessageEmbed } = require("discord.js"),
     Youtube = require("simple-youtube-api"),
     ytdl = require("ytdl-core"),
@@ -12,7 +10,7 @@ module.exports = {
     name: "play",
     description: "Play a song/playlist from a Youtube link",
     category: "music",
-    aliases: [],
+    aliases: ["p"],
     args: true,
     usage: "<link>",
     cooldown: 5,
@@ -170,6 +168,9 @@ module.exports = {
                         return;
                     })
                     .on("finish", () => {
+                        if (message.guild.musicData.skipCollector) {
+                            message.guild.musicData.skipCollector.stop();
+                        }
                         if (queue.length >= 1) {
                             return this.playSong(message, queue);
                         } else {

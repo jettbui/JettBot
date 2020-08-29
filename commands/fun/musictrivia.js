@@ -9,7 +9,7 @@ module.exports = {
     name: "musictrivia",
     description: "Starts a music trivia quiz",
     category: "fun",
-    aliases: ["musicquiz", "mt"],
+    aliases: ["mt"],
     args: false,
     guildOnly: true,
     execute(message, args) {
