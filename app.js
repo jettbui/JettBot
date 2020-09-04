@@ -11,6 +11,7 @@ Structures.extend("Guild", (Guild) => {
     class ExtendedGuild extends Guild {
         constructor(client, data) {
             super(client, data);
+            this.isPollRunning = false;
             this.musicData = { // music data
                 queue: [],
                 isPlaying: false,
@@ -61,7 +62,7 @@ console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join
 
 // client events
 client.on("ready", () => {
-    console.log("Online on the following servers: Unavailable")
+    console.log("Online on the following servers:")
     client.guilds.cache.forEach((server) => { console.log(`- ${server.name}`) });
     console.log(`Logged in as ${client.user.tag}.\n`);
     client.user.setActivity(defaultActivity, { type: "PLAYING" });
