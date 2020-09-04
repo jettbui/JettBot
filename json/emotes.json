@@ -175,6 +175,11 @@
         "type": "bttv",
         "animated": true
     },
+    "forsenwc": {
+        "id": "5d0076c7aae4851c803cbc51",
+        "type": "bttv",
+        "animated": true
+    },
     "gaben": {
         "id": "54fa90ba01e468494b85b543",
         "type": "bttv"
@@ -576,7 +581,7 @@
         "animated": true
     },
     "trieasy": {
-        "id": "164471",
+        "id": "196974", 
         "type": "ffz"
     },
     "trifi": {
