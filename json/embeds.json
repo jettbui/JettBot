@@ -4,9 +4,9 @@
         "author": {
             "name": "JettBot"
         },
-        "description": "A multi-purpose and easy-to-use Discord bot",
+        "description": "A multi-purpose and easy-to-use Discord bot.",
         "thumbnail": {
-            "url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            "url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
         },
         "fields": [
             {
@@ -26,7 +26,7 @@
         "color": "#7289da",
         "author": {
             "name": "JettBot",
-            "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+            "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
         },
         "title": "All Emotes",
         "footer": {
@@ -43,7 +43,7 @@
             "color": "#7289da",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "All Commands",
             "footer": {
@@ -54,7 +54,7 @@
             "color": "#546e7a",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "footer": {
                 "text": "Copyright JettBot, © 2020"
@@ -64,7 +64,7 @@
             "color": "#3498db",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Customization Commands",
             "footer": {
@@ -75,7 +75,7 @@
             "color": "#e74c3c",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Fun Commands",
             "footer": {
@@ -86,7 +86,7 @@
             "color": "#7289da",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Commands",
             "fields": [
@@ -129,7 +129,7 @@
             "color": "#1abc9c",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Informational Commands",
             "footer": {
@@ -140,7 +140,7 @@
             "color": "#2ecc71",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Moderation Commands",
             "footer": {
@@ -151,7 +151,7 @@
             "color": "#f1c40f",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Music Commands",
             "footer": {
@@ -162,7 +162,7 @@
             "color": "#9b59b6",
             "author": {
                 "name": "JettBot",
-                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/30a1820b464b373e85a9a2f66233d7e4.webp"
+                "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
             },
             "title": "Utility Commands",
             "footer": {
