@@ -19,6 +19,8 @@ You can invite the bot to your server [here.](https://discord.com/api/oauth2/aut
 The bot may be run locally using [Node.js (12.0+)](https://nodejs.org/) or using a cloud platform such as [Heroku](https://www.heroku.com/).
 Keep reading for instructions on how to run the bot locally.
 
+#### Note: The bot utilizes the Youtube API and therefore requires a respective API token/credentials.
+
 Clone the repository files:
 
 ``` bash
@@ -31,10 +33,18 @@ Go to working directory and install required packages:
 npm install
 ```
 
-Open 'config.json' with a text editor and change the following line to your bot's Discord API token:
+In the base directory, create a `config.json` file and complete the following information using a text editor:
 
 ``` json
-"token": = "<your token here>",
+{
+    "defaultActivity": "!help",
+    "defaultCooldown": 2,
+    "logMessages": false,
+    "ownerId": "<your Discord ID>",
+    "prefix": "!",
+    "token": "<your bot API token>",
+    "youtubeAPIkey": "<your Youtube API token>"
+}
 ```
 
 Run the bot with the following command in the working directory:
@@ -45,7 +55,7 @@ node app.js
 
 Invite the bot to your server using your generated [OAuth2](https://discord.com/developers/docs/topics/oauth2) URL.
 
-Use the `!help` command to list the possible commands for the bot. (Note: You can change the command prefix in `config.json`)
+Use the `!help` command to list the possible commands for the bot. (You can change the command prefix in `config.json`)
 
 ## License
 
