@@ -63,6 +63,11 @@
         "triviaRunning": "There is already a trivia running.",
         "triviaStopped": "Music trivia stopped."
     },
+    "pollResponses": {
+        "tooLittleOptions": "You must provide at least two options.",
+        "tooManyOptions": "You can only provide at most 10 options.",
+        "pollRunning": "There is currently a poll running."
+    },
     "purgeResponses": {
         "invalidArgument": "Argument must be a number.",
         "invalidRange": "Amount must be within 1 and 50."
