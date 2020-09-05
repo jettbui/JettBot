@@ -124,7 +124,7 @@ module.exports = {
 
         options.forEach((value, key) => {
             const percentageValue = (value / voteUsers.length) * 100;
-            const percentage = (isNaN(percentageValue)) ? 0 : percentageValue;
+            const percentage = (isNaN(percentageValue)) ? 0 : Math.round(percentageValue);
             output = output + `**${percentage}%** ${parsedArgs[optionsIndex]}\n`;
             optionsIndex = optionsIndex + 1;
         });
