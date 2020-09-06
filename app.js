@@ -1,8 +1,8 @@
-const { Structures, Collection, PartialTextBasedChannel } = require("discord.js"),
+const { Structures, Collection } = require("discord.js"),
     Client = require("./client/Client"),
+    config = require("./config.json"),
     fs = require("fs"),
     { exit } = require("process"),
-    { prefix, token, defaultCooldown, defaultActivity, ownerId, logMessages } = require("./config.json"),
     { globalResponses } = require("./json/responses.json");
 
 
@@ -11,6 +11,8 @@ Structures.extend("Guild", (Guild) => {
     class ExtendedGuild extends Guild {
         constructor(client, data) {
             super(client, data);
+
+            this.cooldowns = new Collection();
             this.isPollRunning = false;
             this.musicData = { // music data
                 queue: [],
@@ -34,7 +36,7 @@ Structures.extend("Guild", (Guild) => {
 
 // instantiate client
 console.log("Starting JettBot...\n");
-const client = new Client();
+const client = new Client(config);
 
 // import commands
 console.log("Loading the following commands:");
@@ -57,28 +59,28 @@ for (const file of commandFiles) {
         console.log(`${subfolder.map(s => `${file.name}/${s}`).join("\n")}`);
     }
 }
-
 console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join("\n")}\n`);
 
 // client events
 client.on("ready", () => {
     console.log("Online on the following servers:")
-    client.guilds.cache.forEach((server) => { console.log(`- ${server.name}`) });
-    console.log(`Logged in as ${client.user.tag}.\n`);
-    client.user.setActivity(defaultActivity, { type: "PLAYING" });
-    console.log(`Activity set to '${defaultActivity}'`);
+    client.guilds.cache.forEach(guild => { console.log(`- ${guild.name}`); });
+    console.log(`\nLogged in as ${client.user.tag}.\n`);
+    client.user.setActivity(client.config.defaultActivity, { type: "PLAYING" });
+    console.log(`Activity set to '${client.config.defaultActivity}'`);
 });
 
 client.on("message", (message) => {
 
-    if (logMessages) {
-        console.log(`${message.author.username} (${message.guild}): ${message.content}`);
+    // command handler
+    if (!message.content.startsWith(client.config.prefix) || message.author.bot) {
+        if (client.config.logMessages) {
+            console.log(`${message.author.tag} (${message.guild}): ${message.content}`);
+        }
+        return;
     }
 
-    // command handler
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     const command = client.commands.get(commandName)
@@ -88,11 +90,11 @@ client.on("message", (message) => {
         return message.channel.send(globalResponses.noCommand);
 
     // check context
-    if (command.disabled && message.author.id !== ownerId)
+    if (command.disabled && message.author.id !== client.config.ownerId)
         return message.channel.send(globalResponses.commandDisabled);
     if (command.guildOnly && message.channel.type !== "text")
         return message.channel.send(globalResponses.serverOnly);
-    if (command.devOnly && message.author.id != ownerId)
+    if (command.devOnly && message.author.id != client.config.ownerId)
         return message.channel.send(globalResponses.notAuthorized);
 
     // check permissions
@@ -109,31 +111,34 @@ client.on("message", (message) => {
         let response = globalResponses.invalidArgs;
 
         if (command.usage)
-            response += `\nUsage: ${prefix}${command.name} ${command.usage}`;
+            response += `\nUsage: ${client.config.prefix}${command.name} ${command.usage}`;
 
         return message.channel.send(response);
     }
 
-    // check cooldown
-    if (!client.cooldowns.has(command.name))
-        client.cooldowns.set(command.name, new Collection());
+    // check cooldowns
+    if (message.guild) {
+        if (!message.guild.cooldowns.has(command.name))
+            message.guild.cooldowns.set(command.name, new Collection());
 
-    const now = Date.now();
-    const timestamps = client.cooldowns.get(command.name);
-    const cooldownAmount = (command.cooldown || defaultCooldown) * 1000;
+        const now = Date.now();
+        const timestamps = message.guild.cooldowns.get(command.name);
+        const cooldownAmount = (command.cooldown || client.config.defaultCooldown) * 1000;
 
-    if (timestamps.has(message.author.id)) {
-        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+        if (timestamps.has(message.author.id)) {
+            const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
-        if (now < expirationTime)
-            return message.channel.send(globalResponses.cooldown);
+            if (now < expirationTime)
+                return message.channel.send(globalResponses.cooldown);
+        }
+
+        timestamps.set(message.author.id, now);
+        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
-
-    timestamps.set(message.author.id, now);
-    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
     // execute command
     try {
+        console.log(`${message.author.tag} (${message.guild}) executed '${client.config.prefix}${command.name}': ${message.content}`);
         command.execute(message, args);
     } catch (error) {
         console.error("An error occurred executing a command:\n", error);
@@ -167,4 +172,4 @@ client.on("invalidated", () => {
     exit();
 });
 
-client.login(token);
+client.login(client.config.token);
