@@ -3,12 +3,11 @@ const { pollResponses } = require("../../json/responses.json"),
 
 module.exports = {
     name: "poll",
-    description: "Run a poll to vote",
+    description: "Start a poll",
     category: "utility",
     aliases: [],
     args: true,
-    usage: "<question> [args...]",
-    cooldown: 5,
+    usage: "<question> [options...]",
     guildOnly: true,
     async execute(message, args) {
         const options = new Map();

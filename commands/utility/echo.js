@@ -1,13 +1,12 @@
 module.exports = {
     name: "echo",
-    description: "Repeats a message",
+    description: "Echo a message",
     category: "utility",
     aliases: [],
     args: true,
     usage: "<message>",
-    guildOnly: false,
+    exampleUsage: "echo Hello world!",
     execute(message, args) {
-        const response = args.join(" ");
-        message.channel.send(response);
+        return message.channel.send(args.join(" "));
     },
 };

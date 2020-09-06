@@ -7,7 +7,7 @@ const { MessageEmbed } = require("discord.js"),
 
 module.exports = {
     name: "musictrivia",
-    description: "Starts a music trivia quiz",
+    description: "Start a music trivia quiz",
     category: "fun",
     aliases: ["mt"],
     args: false,

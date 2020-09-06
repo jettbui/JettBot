@@ -1,6 +1,6 @@
 const Discord = require("discord.js"),
     moment = require("moment-timezone"),
-    { userEmbed } = require("../../json/embeds.json"),
+    { globalEmbed } = require("../../json/embeds.json"),
     { userinfoResponses } = require("../../json/responses.json");
 
 module.exports = {
@@ -10,10 +10,7 @@ module.exports = {
     aliases: ["user"],
     args: false,
     usage: "[user]",
-    cooldown: 5,
-    guildOnly: false,
     execute(message, args) {
-
         const user = (args[0]) ? message.mentions.users.first() : message.author;
         const member = message.guild.member(user);
 
@@ -21,7 +18,7 @@ module.exports = {
         if (!member) return message.channel.send(userinfoResponses.invalidUser);
 
         const userRoles = [];
-        member.roles.cache.forEach((r) => {
+        member.roles.cache.forEach(r => {
             if (r != message.guild.roles.everyone.id) userRoles.push(r);
         });
 
@@ -29,7 +26,7 @@ module.exports = {
             .setColor((member.displayHexColor != "#000000") ? member.displayHexColor : "#969c9f")
             .setTitle(`User Info - ${user.tag}`)
             .setThumbnail(user.displayAvatarURL())
-            .setFooter(userEmbed.footer.text)
+            .setFooter(globalEmbed.footer.text)
             .setTimestamp()
             .addFields(
                 { 
@@ -52,10 +49,10 @@ module.exports = {
                 },
                 { 
                     name: "Roles", 
-                    value: (userRoles.length > 0) ? userRoles.join(", ") : "None"
+                    value: (userRoles.length) ? userRoles.join(", ") : "None"
                 }
             );
 
-        message.channel.send(embed);
+        return message.channel.send(embed);
     },
 };

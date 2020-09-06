@@ -1,6 +1,5 @@
 const Discord = require("discord.js"),
-    { prefix, defaultCooldown } = require("../../config.json"),
-    { helpEmbeds: { allEmbed, commandEmbed, customizationEmbed, funEmbed,
+    { globalEmbed, helpEmbeds: { allEmbed, commandEmbed, funEmbed,
         generalEmbed, informationalEmbed, moderationEmbed,
         musicEmbed, utilityEmbed } } = require("../../json/embeds.json"),
     { globalResponses, helpResponses } = require("../../json/responses.json");
@@ -12,104 +11,79 @@ module.exports = {
     aliases: ["commands"],
     args: false,
     usage: "[command]",
-    cooldown: 5,
-    guildOnly: false,
     execute(message, args) {
         const { commands } = message.client;
-        const categories = ["customization", "fun", "informational", "moderation", "music", "utility"];
+        const categories = ["fun", "informational", "moderation", "music", "utility"];
         let category = (args[0]) ? args[0].toLowerCase() : null;
 
-        // general
-        if (!category) {
-            return message.author.send({ embed: generalEmbed })
-                .catch((error) => {
-                    console.error(error);
-                    return message.channel.send(helpResponses.error);
-                });
-        }
-
         const embed = new Discord.MessageEmbed();
+        embed
+            .setColor(globalEmbed.color)
+            .setAuthor(globalEmbed.author.name, globalEmbed.author.icon_url)
+            .setFooter(globalEmbed.footer.text);
 
-        if (category === "all") { // all commands
+        if (!category) { // general
+            embed
+                .setTitle(generalEmbed.title)
+                .addFields(generalEmbed.fields);
+        } else if (category === "all") { // all commands
             const allCommands = commands.filter((cmd) => categories.includes(cmd.category) && !cmd.disabled);
 
-            embed
-                .setColor(allEmbed.color)
-                .setAuthor(allEmbed.author.name, allEmbed.author.icon_url)
-                .setTitle(allEmbed.title)
-                .setFooter(allEmbed.footer.text);
+            embed.setTitle(allEmbed.title);
 
             // TODO alphabetically sort commands
-            
+
             for (const command of allCommands.array()) {
                 if (command.usage)
-                    embed
-                        .addField(`${prefix}${command.name} ${command.usage}`, command.description, true);
+                    embed.addField(`${message.client.config.prefix}${command.name} ${command.usage}`,
+                        command.description, true);
                 else
-                    embed
-                        .addField(`${prefix}${command.name}`, command.description, true);
+                    embed.addField(`${message.client.config.prefix}${command.name}`,
+                        command.description, true);
             }
         } else if (categories.includes(category)) { // categorical
             let categoricalCommands = null;
 
             switch (category) {
-                case "customization":
-                    embed
-                        .setColor(customizationEmbed.color)
-                        .setAuthor(customizationEmbed.author.name, customizationEmbed.author.icon_url)
-                        .setTitle(customizationEmbed.title)
-                        .setFooter(customizationEmbed.footer.text);
-                    categoricalCommands = commands.filter((cmd) => cmd.category === "customization" && !cmd.disabled);
-                    break;
                 case "fun":
                     embed
                         .setColor(funEmbed.color)
-                        .setAuthor(funEmbed.author.name, funEmbed.author.icon_url)
-                        .setTitle(funEmbed.title)
-                        .setFooter(funEmbed.footer.text);
+                        .setTitle(funEmbed.title);
                     categoricalCommands = commands.filter((cmd) => cmd.category === "fun" && !cmd.disabled);
                     break;
                 case "informational":
                     embed
                         .setColor(informationalEmbed.color)
-                        .setAuthor(informationalEmbed.author.name, informationalEmbed.author.icon_url)
-                        .setTitle(informationalEmbed.title)
-                        .setFooter(informationalEmbed.footer.text);
+                        .setTitle(informationalEmbed.title);
                     categoricalCommands = commands.filter((cmd) => cmd.category === "informational" && !cmd.disabled);
                     break;
                 case "moderation":
                     embed
                         .setColor(moderationEmbed.color)
-                        .setAuthor(moderationEmbed.author.name, moderationEmbed.author.icon_url)
-                        .setTitle(moderationEmbed.title)
-                        .setFooter(moderationEmbed.footer.text);
+                        .setTitle(moderationEmbed.title);
                     categoricalCommands = commands.filter((cmd) => cmd.category === "moderation" && !cmd.disabled);
                     break;
                 case "music":
                     embed
                         .setColor(musicEmbed.color)
-                        .setAuthor(musicEmbed.author.name, musicEmbed.author.icon_url)
-                        .setTitle(musicEmbed.title)
-                        .setFooter(musicEmbed.footer.text);
+                        .setTitle(musicEmbed.title);
                     categoricalCommands = commands.filter((cmd) => cmd.category === "music" && !cmd.disabled);
                     break;
                 case "utility":
                     embed
                         .setColor(utilityEmbed.color)
-                        .setAuthor(utilityEmbed.author.name, utilityEmbed.author.icon_url)
-                        .setTitle(utilityEmbed.title)
-                        .setFooter(utilityEmbed.footer.text);
+                        .setTitle(utilityEmbed.title);
                     categoricalCommands = commands.filter((cmd) => cmd.category === "utility" && !cmd.disabled);
                     break;
             }
 
             for (const command of categoricalCommands.array()) {
                 if (command.usage)
-                    embed
-                        .addField(`${prefix}${command.name} ${command.usage}`, command.description, true);
+                    embed.addField(`${message.client.config.prefix}${command.name} ${command.usage}`,
+                        command.description, true);
                 else
-                    embed
-                        .addField(`${prefix}${command.name}`, command.description, true);
+                    embed.addField(`${message.client.config.prefix}${command.name}`,
+                        command.description, true);
             }
         } else { // individual
             const command = commands.get(category) || commands.find((c) => c.aliases && c.aliases.includes(category));
@@ -118,15 +92,25 @@ module.exports = {
 
             embed
                 .setColor(commandEmbed.color)
-                .setAuthor(commandEmbed.author.name, commandEmbed.author.icon_url)
-                .setFooter(commandEmbed.footer.text)
                 .setTitle(command.name)
-                .addField("Description", command.description, true);
+                .addField("Description", command.description, false);
 
-            if (command.usage) embed.addField("Arguments", `${prefix}${command.name} ${command.usage}`, true);
-            if (command.aliases.length) embed.addField("Aliases", command.aliases.join(", "), true);
+            if (command.usage)
+                embed.addField("Usage",
+                    `${message.client.config.prefix}${command.name} ${command.usage}`, false);
+            if (command.exampleUsage)
+                embed.addField("Example Usage", `${message.client.config.prefix}${command.exampleUsage}`);
+            if (command.aliases.length)
+                embed.addField("Aliases",
+                    command.aliases.join(", "), true);
 
-            embed.addField("Cooldown", `${command.cooldown || defaultCooldown} second(s)`, true);
+            embed.addField("Cooldown", `${command.cooldown || message.client.config.defaultCooldown} second(s)`, true);
+
+            return message.channel.send(embed)
+                .catch((error) => {
+                    console.error(error);
+                    return message.channel.send(helpResponses.error);
+                });
         }
 
         return message.author.send(embed)
