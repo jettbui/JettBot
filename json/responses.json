@@ -2,7 +2,7 @@
     "globalResponses": {
         "commandDisabled": "That command is currently disabled.",
         "cooldown": "The command is currently on cooldown.",
-        "error": "An error has occurred. Check logs for details.",
+        "error": "An error occurred while executing a command.",
         "invalidArgs": "Invalid arguments provided.",
         "noCommand": "That command does not exist.",
         "noPermission": "You do not have permission to use that command.",
@@ -33,8 +33,8 @@
     },
     "flipResponses": {
         "answers": [
-            "**<:orange_circle:735583801249497138> Heads.**",
-            "**<:blue_circle:735725260321718302> Tails.**"
+            "Heads",
+            "Tails"
         ]
     },
     "helpResponses": {
@@ -74,12 +74,12 @@
     },
     "rollResponses": {
         "answers": [
-            "<:one:735714655934349385> Rolled a **one**.",
-            "<:two:735714655934349385> Rolled a **two**.",
-            "<:three:735714655934349385> Rolled a **three**.",
-            "<:four:735714655934349385> Rolled a **four**.",
-            "<:five:735714655934349385> Rolled a **five**.",
-            "<:six:735714655934349385> Rolled a **six**."
+            "<:one:735714655934349385>",
+            "<:two:735714655934349385>",
+            "<:three:735714655934349385>",
+            "<:four:735714655934349385>",
+            "<:five:735714655934349385>",
+            "<:six:735714655934349385>"
         ]
     },
     "userinfoResponses": {
