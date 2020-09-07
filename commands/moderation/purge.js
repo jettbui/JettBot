@@ -1,4 +1,6 @@
-const { globalResponses, purgeResponses } = require("../../json/responses.json");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed } = require("../../json/embeds.json"),
+    { purgeResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "purge",
@@ -17,9 +19,13 @@ module.exports = {
         if (amount < 1 || amount > 50) return message.channel.send(purgeResponses.invalidRange);
 
         message.channel.bulkDelete(amount, true)
-            .catch((error) => {
-                console.error(error);
-                message.channel.send(globalResponses.error);
+            .then((messages) => {
+                const embed = new MessageEmbed()
+                    .setColor(globalEmbed.color)
+                    .setTitle(`Cleared ${messages.size} messages`)
+                    .setFooter(`Cleared by ${message.author.username}`, message.author.avatarURL());
+
+                return message.channel.send(embed);
             });
     },
 };

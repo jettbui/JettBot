@@ -75,7 +75,7 @@ client.on("message", (message) => {
     // command handler
     if (!message.content.startsWith(client.config.prefix) || message.author.bot) {
         if (client.config.logMessages) {
-            console.log(`${message.author.tag} (${message.guild}): ${message.content}`);
+            console.log(`${message.author.tag} (${(message.guild) ? message.guild : "DM"}): ${message.content}`);
         }
         return;
     }
@@ -99,11 +99,11 @@ client.on("message", (message) => {
 
     // check permissions
     if (command.permissions !== undefined && command.permissions.length) {
-        let validPerms = false;
-        command.permissions.forEach((permission) => {
-            if (!message.member.hasPermission(permission)) validPerms = true;
+        let invalidated = false;
+        command.permissions.forEach(permission => {
+            if (!message.member.hasPermission(permission)) invalidated = true;
         });
-        if (validPerms) return message.channel.send(globalResponses.noPermission);
+        if (invalidated) return message.channel.send(globalResponses.noPermission);
     }
 
     // check args

@@ -26,15 +26,7 @@
         ]
     },
     "emotesEmbed": {
-        "color": "#7289da",
-        "author": {
-            "name": "JettBot",
-            "icon_url": "https://cdn.discordapp.com/avatars/734847208154857493/5e664185e13a0c3b3e4a755e5f2b1077.webp"
-        },
-        "title": "All Emotes",
-        "footer": {
-            "text": "Copyright JettBot, © 2020"
-        }
+        "title": "All Emotes"
     },
     "helpEmbeds": {
         "allEmbed": {

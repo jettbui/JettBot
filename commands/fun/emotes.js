@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js"),
     emotes = require("../../json/emotes.json"),
-    { emotesEmbed } = require("../../json/embeds.json");
+    { globalEmbed, emotesEmbed } = require("../../json/embeds.json");
 
 module.exports = {
     name: "emotes",
@@ -8,44 +8,42 @@ module.exports = {
     category: "fun",
     aliases: ["elist"],
     args: false,
-    guildOnly: false,
     execute(message) {
-
+        const emoteArr = [];
         const embed = new MessageEmbed()
-            .setColor(emotesEmbed.color)
-            .setTitle(emotesEmbed.title)
-            .setAuthor(emotesEmbed.author.name, emotesEmbed.author.icon_url)
-            .setFooter(emotesEmbed.footer.text);
+            .setColor(globalEmbed.color)
+            .setAuthor(globalEmbed.author.name, globalEmbed.author.icon_url)
+            .setFooter(globalEmbed.footer.text)
+            .setTitle(emotesEmbed.title);
 
-        let emoteArr = []
-
-        for (let key in emotes) {
+        for (const key in emotes) {
             emoteArr.push(key);
         }
         
         const alphabetizedArr = this.alphabetize(emoteArr);
-        let numEmotes = [];
-        let afEmotes = [];
-        let gmEmotes = [];
-        let nzEmotes = [];
+        const numEmotes = [],
+            azEmotes1 = [],
+            azEmotes2 = [],
+            azEmotes3 = [];
 
         alphabetizedArr.forEach((key) => {
             if (parseInt(key.title))
                 numEmotes.push(...key.data);
             else if (key.title.match(/[a-f]/i))
-                afEmotes.push(...key.data);
-            else if (key.title.match(/[g-m]/i))
-                gmEmotes.push(...key.data);
+                azEmotes1.push(...key.data);
+            else if (key.title.match(/[g-o]/i))
+                azEmotes2.push(...key.data);
             else
-                nzEmotes.push(...key.data);
+                azEmotes3.push(...key.data);
         });
 
-        embed.addField("0-9", numEmotes.join(", "));
-        embed.addField("A-F", afEmotes.join(", "));
-        embed.addField("G-M", gmEmotes.join(", "));
-        embed.addField("N-Z", nzEmotes.join(", "));
+        embed
+            .addField("0-9", numEmotes.join(", "))
+            .addField("A-F", azEmotes1.join(", "))
+            .addField("G-O", azEmotes2.join(", "))
+            .addField("P-Z", azEmotes3.join(", "));
 
-        message.author.send(embed);
+        return message.author.send(embed);
     },
     alphabetize(arr) {
         return Object.values(

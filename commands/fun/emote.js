@@ -1,4 +1,4 @@
-const Discord = require("discord.js"),
+const { MessageEmbed } = require("discord.js"),
     emotes = require("../../json/emotes.json"),
     { emoteResponses } = require("../../json/responses.json");
 
@@ -9,22 +9,33 @@ module.exports = {
     aliases: ["e"],
     args: true,
     usage: "<emote> [msg]",
-    guildOnly: false,
+    exampleUsage: "emote pepeJAM Dun dun dun dun dun dun",
+    guildOnly: true,
     execute(message, args) {
+        const user = message.author;
+        const member = message.member;
         const emote = emotes[args[0].toLowerCase()];
         const msgArr = [];
 
-        for (let i = 1; i < args.length; i++) { // parse mentions
-            const mention = args[i].match(/^<@!?(\d+)>$/);
-            if (mention) {
-                const user = message.client.users.cache.get(mention[1]);
+        for (let i = 1; i < args.length; i++) { // parse message (including mentions)
+            const userMention = args[i].match(/^<@!?(\d+)>$/);
+            const roleMention = args[i].match(/^<@&?(\d+)>$/);
+            const channelMention = args[i].match(/^<#?(\d+)>$/);
+            if (userMention) {
+                const user = message.client.users.cache.get(userMention[1]);
                 msgArr[i - 1] = `@${user.username}`;
+            } else if (roleMention) {
+                const role = message.guild.roles.cache.get(roleMention[1]);
+                msgArr[i - 1] = `@${role.name}`;
+            } else if (channelMention) {
+                const channel = message.guild.channels.cache.get(channelMention[1]);
+                msgArr[i - 1] = `#${channel.name}`;
             } else {
                 msgArr[i - 1] = args[i];
             }
         }
 
-        let msg = (msgArr.length) ? msgArr.join(" ") : null;
+        const msg = (msgArr.length) ? msgArr.join(" ") : null;
 
         if (emote) {
             let emoteUrl;
@@ -40,19 +51,16 @@ module.exports = {
                     break;
             }
 
-            const user = message.author;
-            const member = message.guild.member(user);
-
-            const emoteEmbed = new Discord.MessageEmbed()
+            const embed = new MessageEmbed()
                 .setColor((member.displayHexColor != "#000000") ? member.displayHexColor : "#969c9f")
                 .setAuthor((msg) ? `${member.displayName} says: ${msg}` : `${member.displayName} says`, user.displayAvatarURL())
                 .setThumbnail((emote.animated) ? `${emoteUrl}.gif` : emoteUrl)
                 .setTimestamp();
             
-            message.channel.send(emoteEmbed);
             message.delete();
-        } else {
-            message.channel.send(emoteResponses.noEmote);
+            return message.channel.send(embed);
         }
+
+        return message.channel.send(emoteResponses.noEmote);
     },
 };

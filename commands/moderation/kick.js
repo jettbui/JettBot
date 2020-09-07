@@ -1,13 +1,15 @@
-const { globalResponses, kickResponses } = require("../../json/responses.json");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed } = require("../../json/embeds.json"),
+    { kickResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "kick",
-    description: "Kick a member from the server",
+    description: "Kick a member",
     category: "moderation",
     aliases: [],
-    args: true,
     permissions: ["KICK_MEMBERS"],
-    usage: "<user>",
+    args: true,
+    usage: "<user> [reason]",
     cooldown: 8,
     guildOnly: true,
     execute(message, args) {
@@ -24,11 +26,15 @@ module.exports = {
 
         member.kick(reason)
             .then(() => {
-                message.channel.send(`Kicked ${user.tag}.`);
-            })
-            .catch((error) => {
-                console.error(error);
-                message.channel.send(globalResponses.error);
+                const embed = new MessageEmbed()
+                    .setColor(globalEmbed.color)
+                    .setTitle(`Kicked ${user.tag}`)
+                    .setThumbnail(user.displayAvatarURL())
+                    .setFooter(`Kicked by ${message.author.username}`, message.author.avatarURL());
+                
+                if (reason !== "No reason provided") embed.addField("Reason", reason);
+
+                return message.channel.send(embed);
             });
     },
 };

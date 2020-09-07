@@ -1,5 +1,5 @@
-const { pollResponses } = require("../../json/responses.json"),
-    { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js"),
+    { pollResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "poll",
@@ -8,17 +8,23 @@ module.exports = {
     aliases: [],
     args: true,
     usage: "<question> [options...]",
+    exampleUsage: 'poll "What should I eat for dinner?" "Hamburger" "Pizza" "Spaghetti"',
     guildOnly: true,
     async execute(message, args) {
         const options = new Map();
         const voteUsers = [];
         const interval = 15000; // interval to update timer (ms)
         let timer = 60000; // time to run poll (ms)
-        let collector = null;
 
         const parsedArgs = this.extractArgs(args.join(" "));
         const question = parsedArgs.shift();
-        const binaryVote = (parsedArgs.length) ? false : true;
+        const binaryVote = (!parsedArgs.length) ? true : false;
+
+        const embed = new MessageEmbed()
+            .setColor("#1abc9c")
+            .setAuthor("Poll")
+            .setTitle(question)
+            .setFooter(`You can only vote once. (${timer / 1000} seconds left)`);
 
         // validity checks
         if (message.guild.isPollRunning) return message.channel.send(pollResponses.pollRunning);
@@ -30,27 +36,21 @@ module.exports = {
         if (binaryVote) {
             options.set("✅", 0);
             options.set("❌", 0);
-            parsedArgs.push("Yes");
-            parsedArgs.push("No");
+            parsedArgs.push("Yes", "No");
         } else {
             const emoteList = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟"];
             let emoteIndex = 0;
+
             parsedArgs.forEach(() => {
                 options.set(emoteList[emoteIndex], 0);
                 emoteIndex = emoteIndex + 1;
             });
+
+            embed.setDescription(this.getOptions(options, parsedArgs));
         }
 
-        const embed = new MessageEmbed()
-            .setColor("#1abc9c")
-            .setAuthor(`Poll`)
-            .setTitle(question)
-            .setFooter(`You can only vote once. (${timer / 1000} seconds left)`);
-        
-        if (!binaryVote) embed.setDescription(this.getOptions(options, parsedArgs));
-
         message.channel.send(embed)
-            .then((message) => {
+            .then(message => {
                 const filter = (reaction, user) => {
                     return (
                         options.has(reaction.emoji.name) &&
@@ -63,16 +63,13 @@ module.exports = {
                     message.edit(embed);
                 }, interval);
 
-                collector = message.createReactionCollector(filter, { time: timer });
-                collector
+                message.createReactionCollector(filter, { time: timer })
                     .on("collect", (reaction, user) => {
                         if (voteUsers.includes(user.id)) return;
                         voteUsers.push(user.id)
 
-                        if (options.has(reaction.emoji.name)) {
-                            const votes = options.get(reaction.emoji.name);
-                            options.set(reaction.emoji.name, votes + 1);
-                        }
+                        const votes = options.get(reaction.emoji.name);
+                        options.set(reaction.emoji.name, votes + 1);
                     })
                     .on("end", () => {
                         clearInterval(stopwatch);
@@ -85,7 +82,6 @@ module.exports = {
                         message.guild.isPollRunning = false;
                     });
 
-
                 options.forEach((value, key) => {
                     message.react(key);
                 });
@@ -93,7 +89,8 @@ module.exports = {
             .catch((error) => {
                 console.log(error);
                 message.guild.isPollRunning = false;
-            })
+            });
+        return;
     },
     extractArgs(str) {
         const re = /"(.*?)"/g;

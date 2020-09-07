@@ -1,13 +1,15 @@
-const { globalResponses, banResponses } = require("../../json/responses.json");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed } = require("../../json/embeds.json"),
+    { banResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "ban",
-    description: "Ban a member from the server",
+    description: "Ban a member",
     category: "moderation",
     aliases: [],
     permissions: ["BAN_MEMBERS"],
     args: true,
-    usage: "<user>",
+    usage: "<user> [reason]",
     cooldown: 8,
     guildOnly: true,
     execute(message, args) {
@@ -24,11 +26,15 @@ module.exports = {
 
         member.ban({reason: reason})
             .then(() => {
-                message.channel.send(`Banned ${user.tag}.`);
-            })
-            .catch((error) => {
-                console.error(error);
-                message.channel.send(globalResponses.error);
+                const embed = new MessageEmbed()
+                    .setColor(globalEmbed.color)
+                    .setTitle(`Banned ${user.tag}`)
+                    .setThumbnail(user.displayAvatarURL())
+                    .setFooter(`Banned by ${message.author.username}`, message.author.avatarURL());
+                
+                if (reason !== "No reason provided") embed.addField("Reason", reason);
+
+                return message.channel.send(embed);
             });
     },
 };
