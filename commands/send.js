@@ -14,7 +14,7 @@ module.exports = {
         if (!channel) return message.channel.send("Invalid channel.");
         if (!msg) return message.channel.send("No message specified.");
 
-        channel.send(msg)
+        channel.send(msg);
 
         return message.channel.send(`Sent '${msg}' to ${channel.guild.name}: ${channel}`);
     },
