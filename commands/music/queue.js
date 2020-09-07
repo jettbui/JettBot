@@ -1,17 +1,20 @@
-const { musicEmbeds } = require("../../json/embeds.json"),
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
-const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "queue",
-    description: "Shows the music queue",
+    description: "Show the music queue",
     category: "music",
     aliases: [],
     args: false,
-    cooldown: 5,
     guildOnly: true,
     async execute(message) {
         const currSong = message.guild.musicData.nowPlaying;
+        const queue = message.guild.musicData.queue;
+        const embed = new MessageEmbed()
+            .setColor(globalEmbed.color)
+            .setTitle(`Music Queue (${queue.length + 1} ${(queue.length === 1) ? "song" : "songs"})`);
 
         // validity checks
         if (message.guild.triviaData.isTriviaRunning) return message.channel.send(musicResponses.triviaRunning);
@@ -19,18 +22,14 @@ module.exports = {
 
         const queueList = [];
         queueList.push(currSong.title);
-        message.guild.musicData.queue.slice(0, 10).forEach((s) => {
+        queue.slice(0, 10).forEach(s => {
             queueList.push(s.title);
         });
 
-        const embed = new MessageEmbed()
-            .setColor(musicEmbeds.queueEmbed.color)
-            .setTitle(`Music Queue - ${message.guild.musicData.queue.length + 1} songs`);
-
         for (let i = 0; i < queueList.length; i++) {
-            embed.addField(`${(i == 0) ? "Now Playing": i + 1}:`, queueList[i]);
+            embed.addField(`${(i == 0) ? "Now Playing:" : i + 1}`, queueList[i]);
         }
 
-        message.channel.send(embed);
+        return message.channel.send(embed);
     },
 };

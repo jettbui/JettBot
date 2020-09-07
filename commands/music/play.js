@@ -2,21 +2,25 @@ const { MessageEmbed } = require("discord.js"),
     Youtube = require("simple-youtube-api"),
     ytdl = require("ytdl-core"),
     { youtubeAPIkey } = require("../../config.json"),
-    youtube = new Youtube(youtubeAPIkey),
-    { musicEmbeds } = require("../../json/embeds.json"),
+    { globalEmbed, musicEmbeds: { queueEmbed, songEmbed } } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
+const youtube = new Youtube(youtubeAPIkey);
 
 module.exports = {
     name: "play",
-    description: "Play a song/playlist from a Youtube link",
+    description: "Play music from Youtube",
     category: "music",
     aliases: ["p"],
     args: true,
     usage: "<link>",
-    cooldown: 5,
     guildOnly: true,
     async execute(message, args) {
         const voiceChannel = message.member.voice.channel;
+        const user = message.member.user;
+        const embed = new MessageEmbed()
+            .setColor(globalEmbed.color)
+            .setAuthor(queueEmbed.author.name)
+            .setFooter(`Requested by ${user.username}`, user.avatarURL());
         let query = args.join(" ");
 
         // validity checks
@@ -27,7 +31,6 @@ module.exports = {
             try {
                 const playlist = await youtube.getPlaylist(query);
                 const videos = await playlist.getVideos();
-                const user = message.member.user;
 
                 for (let i = videos.length - 1; i > 0; i--) { // shuffle
                     const j = Math.floor(Math.random() * (i + 1));
@@ -36,7 +39,7 @@ module.exports = {
 
                 for (let i = 0; i < videos.length; i++) {
                     const video = await videos[i].fetch();
-                    const songObj = this.constructSongObj(video, voiceChannel, message.member.user);
+                    const songObj = this.constructSongObj(video, voiceChannel, user);
 
                     message.guild.musicData.queue.push(songObj);
                 }
@@ -45,11 +48,7 @@ module.exports = {
                     message.guild.musicData.isPlaying = true;
                     return this.playSong(message, message.guild.musicData.queue);
                 } else if (message.guild.musicData.isPlaying) {
-                    const embed = new MessageEmbed()
-                        .setColor(musicEmbeds.queuedEmbed.color)
-                        .setAuthor(musicEmbeds.queuedEmbed.author.name)
-                        .setTitle(`<:musical_note:746147269488803931>   Playlist - ${playlist.title}`)
-                        .setFooter(`Requested by ${user.username}`, user.avatarURL());;
+                    embed.setTitle(`🎶   Playlist - ${playlist.title}`);
                     return message.channel.send(embed);
                 }
             } catch (error) {
@@ -63,7 +62,7 @@ module.exports = {
                     .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
                 const id = query[2].split(/[^0-9a-z_\-]/i)[0];
                 const video = await youtube.getVideoByID(id);
-                const songObj = this.constructSongObj(video, voiceChannel, message.member.user);
+                const songObj = this.constructSongObj(video, voiceChannel, user);
 
                 message.guild.musicData.queue.push(songObj);
 
@@ -71,13 +70,10 @@ module.exports = {
                     message.guild.musicData.isPlaying = true;
                     return this.playSong(message, message.guild.musicData.queue);
                 } else if (message.guild.musicData.isPlaying) {
-                    const embed = new MessageEmbed()
-                        .setColor(musicEmbeds.queuedEmbed.color)
-                        .setAuthor(musicEmbeds.queuedEmbed.author.name)
-                        .setTitle(`<:musical_note:746147269488803931>   ${songObj.title}`)
+                    embed
+                        .setTitle(`🎵   ${songObj.title}`)
                         .setThumbnail(songObj.thumbnail)
-                        .addField("Duration", songObj.duration)
-                        .setFooter(`Requested by ${songObj.userDisplayName}`, songObj.userAvatar);
+                        .addField("Duration", songObj.duration);
                     return message.channel.send(embed)
                 }
             } catch (error) {
@@ -92,7 +88,7 @@ module.exports = {
             if (!videos || videos.length < 1) return message.channel.send(musicResponses.invalidSong);
 
             const video = await youtube.getVideoByID(videos[0].id);
-            const songObj = this.constructSongObj(video, voiceChannel, message.member.user);
+            const songObj = this.constructSongObj(video, voiceChannel, user);
 
             message.guild.musicData.queue.push(songObj);
 
@@ -100,13 +96,10 @@ module.exports = {
                 message.guild.musicData.isPlaying = true;
                 return this.playSong(message, message.guild.musicData.queue);
             } else if (message.guild.musicData.isPlaying) {
-                const embed = new MessageEmbed()
-                    .setColor(musicEmbeds.queuedEmbed.color)
-                    .setAuthor(musicEmbeds.queuedEmbed.author.name)
-                    .setTitle(`<:musical_note:746147269488803931>   ${songObj.title}`)
+                embed
+                    .setTitle(`🎵   ${songObj.title}`)
                     .setThumbnail(songObj.thumbnail)
-                    .addField("Duration", songObj.duration)
-                    .setFooter(`Requested by ${songObj.userDisplayName}`, songObj.userAvatar);
+                    .addField("Duration", songObj.duration);
                 return message.channel.send(embed)
             }
         } catch (error) {
@@ -141,36 +134,34 @@ module.exports = {
             }`;
         return duration;
     },
-    playSong(message, queue) { // removed { quality: "highestaudio", highWaterMark: 1 << 25 }
-        let voiceChannel;
+    playSong(message, queue) {
+        const embed = new MessageEmbed()
+            .setColor(globalEmbed.color)
+            .setAuthor(songEmbed.author.name)
+            .setTitle(`🎵   ${queue[0].title}`)
+            .setThumbnail(queue[0].thumbnail)
+            .addField("Duration", queue[0].duration, true)
+            .setFooter(`Requested by ${queue[0].userDisplayName}`, queue[0].userAvatar);
+
         queue[0].voiceChannel
             .join()
-            .then((connection) => {
+            .then(connection => {
                 const dispatcher = connection
-                    .play(ytdl(queue[0].url, { quality: "highestaudio" }))
+                    .play(ytdl(queue[0].url, { quality: "highestaudio", highWaterMark: 1 << 25 }))
                     .on("start", () => {
                         message.guild.musicData.songDispatcher = dispatcher;
                         dispatcher.setVolume(message.guild.musicData.volume);
 
-                        const embed = new MessageEmbed()
-                            .setColor(musicEmbeds.songEmbed.color)
-                            .setAuthor(musicEmbeds.songEmbed.author.name)
-                            .setTitle(`<:musical_note:746147269488803931>   ${queue[0].title}`)
-                            .setThumbnail(queue[0].thumbnail)
-                            .addField("Duration", queue[0].duration, true)
-                            .setFooter(`Requested by ${queue[0].userDisplayName}`, queue[0].userAvatar);
-
                         if (queue[1]) embed.addField("Up next", queue[1].title, true);
 
-                        message.channel.send(embed);
                         message.guild.musicData.nowPlaying = queue[0];
                         queue.shift();
-                        return;
+                        return message.channel.send(embed);
                     })
                     .on("finish", () => {
-                        if (message.guild.musicData.skipCollector) {
+                        if (message.guild.musicData.skipCollector) // end skip vote
                             message.guild.musicData.skipCollector.stop();
-                        }
+
                         if (queue.length >= 1) {
                             return this.playSong(message, queue);
                         } else {
@@ -183,23 +174,22 @@ module.exports = {
                     })
                     .on("error", (error) => {
                         console.error(error);
-                        message.channel.send(musicResponses.error);
                         message.guild.musicData.queue.length = 0;
                         message.guild.musicData.isPlaying = false;
                         message.guild.musicData.nowPlaying = null;
                         message.guild.musicData.songDispatcher = null;
                         message.guild.me.voice.channel.leave();
-                        return;
+                        return message.channel.send(musicResponses.error);
                     });
             })
             .catch((error) => {
                 console.error(error);
-                message.channel.send(musicResponses.error);
                 message.guild.musicData.queue.length = 0;
                 message.guild.musicData.isPlaying = false;
                 message.guild.musicData.nowPlaying = null;
                 message.guild.musicData.songDispatcher = null;
-                return message.guild.me.voice.channel.leave();
+                message.guild.me.voice.channel.leave();
+                return message.channel.send(musicResponses.error);
             })
     }
 };

@@ -1,4 +1,4 @@
-const Discord = require("discord.js"),
+const { MessageEmbed } = require("discord.js"),
     { globalEmbed, helpEmbeds: { allEmbed, commandEmbed, funEmbed,
         generalEmbed, informationalEmbed, moderationEmbed,
         musicEmbed, utilityEmbed } } = require("../../json/embeds.json"),
@@ -16,8 +16,7 @@ module.exports = {
         const categories = ["fun", "informational", "moderation", "music", "utility"];
         let category = (args[0]) ? args[0].toLowerCase() : null;
 
-        const embed = new Discord.MessageEmbed();
-        embed
+        const embed = new MessageEmbed()
             .setColor(globalEmbed.color)
             .setAuthor(globalEmbed.author.name, globalEmbed.author.icon_url)
             .setFooter(globalEmbed.footer.text);

@@ -1,14 +1,13 @@
-const { musicEmbeds } = require("../../json/embeds.json"),
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed, musicEmbeds: { songEmbed } } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
-const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "song",
-    description: "Shows the current song playing",
+    description: "Show the song currently playing",
     category: "music",
-    aliases: ["nowplaying", "currentsong", "songinfo"],
+    aliases: ["nowplaying", "songinfo"],
     args: false,
-    cooldown: 5,
     guildOnly: true,
     async execute(message) {
         // validity checks
@@ -18,22 +17,28 @@ module.exports = {
             return message.channel.send(musicResponses.triviaRunning);
 
         const song = message.guild.musicData.nowPlaying;
-        let description;
-        if (song.duration == "Live Stream") {
-            description = "Live Stream";
-        } else {
-            description = this.playbackBar(message, song);
-        }
-
+        const description = (song.duration == "Live Stream") ? "Live Stream" : this.playbackBar(message, song);
         const embed = new MessageEmbed()
-            .setColor(musicEmbeds.songDetailedEmbed.color)
-            .setAuthor(musicEmbeds.songDetailedEmbed.author.name)
+            .setColor(globalEmbed.color)
+            .setAuthor(songEmbed.author.name)
             .setThumbnail(song.thumbnail)
-            .setTitle(`:musical_note:   ${song.title}`)
+            .setTitle(`🎵   ${song.title}`)
             .setDescription(description)
             .setFooter(`Requested by ${song.userDisplayName}`, song.userAvatar);
 
         return message.channel.send(embed);
+    },
+    formatDuration(durationObj) {
+        const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
+            durationObj.minutes ? durationObj.minutes : '00'
+            }:${
+            (durationObj.seconds < 10)
+                ? ('0' + durationObj.seconds)
+                : (durationObj.seconds
+                    ? durationObj.seconds
+                    : '00')
+            }`;
+        return duration;
     },
     playbackBar(message, video) {
         const passedTimeInMS = message.guild.musicData.songDispatcher.streamTime;
@@ -43,11 +48,10 @@ module.exports = {
             hours: Math.floor((passedTimeInMS / (1000 * 60 * 60)) % 24)
         };
         const passedTimeFormatted = this.formatDuration(passedTimeInMSObj);
-
         const totalDurationObj = video.rawDuration;
         const totalDurationFormatted = this.formatDuration(totalDurationObj);
-
         let totalDurationInMS = 0;
+
         Object.keys(totalDurationObj).forEach(function (key) {
             if (key == 'hours') {
                 totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 3600000;
@@ -57,10 +61,12 @@ module.exports = {
                 totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 100;
             }
         });
+
         const playBackBarLocation = Math.round(
             (passedTimeInMS / totalDurationInMS) * 10
         );
         let playBack = '';
+
         for (let i = 1; i < 21; i++) {
             if (playBackBarLocation == 0) {
                 playBack = ':white_circle:▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
@@ -74,20 +80,8 @@ module.exports = {
                 playBack = playBack + '▬';
             }
         }
+
         playBack = `${passedTimeFormatted}  ${playBack}  ${totalDurationFormatted}`;
         return playBack;
     },
-    // prettier-ignore
-    formatDuration(durationObj) {
-        const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
-            durationObj.minutes ? durationObj.minutes : '00'
-            }:${
-            (durationObj.seconds < 10)
-                ? ('0' + durationObj.seconds)
-                : (durationObj.seconds
-                    ? durationObj.seconds
-                    : '00')
-            }`;
-        return duration;
-    }
 };

@@ -1,6 +1,6 @@
-const { musicEmbeds } = require("../../json/embeds.json"),
-    { musicResponses } = require("../../json/responses.json"),
-    { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed, musicEmbeds: { skipEmbed }} = require("../../json/embeds.json"),
+    { musicResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "forceskip",
@@ -9,11 +9,10 @@ module.exports = {
     aliases: [],
     permissions: ["ADMINISTRATOR"],
     args: false,
-    cooldown: 5,
     guildOnly: true,
     async execute(message) {
         const voiceChannel = message.member.voice.channel;
-        const currentSong = message.guild.musicData.nowPlaying;
+        const currSong = message.guild.musicData.nowPlaying;
         const user = message.member.user;
 
         // validity checks
@@ -27,13 +26,13 @@ module.exports = {
             return message.channel.send(musicResponses.triviaRunning);
 
         const embed = new MessageEmbed()
-            .setColor(musicEmbeds.skipEmbed.color)
-            .setAuthor(musicEmbeds.skipEmbed.author.name)
-            .setTitle(`<:musical_note:746147269488803931>   ${currentSong.title}`)
-            .setThumbnail(currentSong.thumbnail)
+            .setColor(globalEmbed.color)
+            .setAuthor(skipEmbed.author.name)
+            .setTitle(`🎵   ${currSong.title}`)
+            .setThumbnail(currSong.thumbnail)
             .setFooter(`Skipped by ${user.username}`, user.avatarURL());
 
         message.guild.musicData.songDispatcher.end();
-        message.channel.send(embed);
+        return message.channel.send(embed);
     },
 };

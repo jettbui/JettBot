@@ -1,5 +1,5 @@
 const Discord = require("discord.js"),
-    moment = require("moment-timezone"),
+    { tz } = require("moment-timezone"),
     { globalEmbed } = require("../../json/embeds.json"),
     { userinfoResponses } = require("../../json/responses.json");
 
@@ -41,11 +41,11 @@ module.exports = {
                 },
                 {
                     name: "Account Created",
-                    value: moment.tz(user.createdAt, "America/Los_Angeles").format("MMMM DD, YYYY [at] h:mm A [(PST)]")
+                    value: tz(user.createdAt, "America/Los_Angeles").format("MMMM DD, YYYY [at] h:mm A [(PST)]")
                 },
                 {
                     name: "Joined",
-                    value: moment.tz(member.joinedAt, "America/Los_Angeles").format("MMMM DD, YYYY [at] h:mm A [(PST)]")
+                    value: tz(member.joinedAt, "America/Los_Angeles").format("MMMM DD, YYYY [at] h:mm A [(PST)]")
                 },
                 { 
                     name: "Roles", 

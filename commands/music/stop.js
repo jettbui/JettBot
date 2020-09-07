@@ -1,6 +1,6 @@
-const { musicEmbeds } = require("../../json/embeds.json"),
-    { musicResponses } = require("../../json/responses.json"),
-    { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed, musicEmbeds: { stopEmbed } } = require("../../json/embeds.json"),
+    { musicResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "stop",
@@ -8,11 +8,14 @@ module.exports = {
     category: "music",
     aliases: [],
     args: false,
-    cooldown: 5,
     guildOnly: true,
     async execute(message) {
         const voiceChannel = message.member.voice.channel;
         const user = message.member.user;
+        const embed = new MessageEmbed()
+            .setColor(globalEmbed.color)
+            .setAuthor(stopEmbed.author.name)
+            .setFooter(`Stopped by ${user.username}`, user.avatarURL());
 
         // validity checks
         if (!voiceChannel)
@@ -24,16 +27,11 @@ module.exports = {
         if (message.guild.triviaData.isTriviaRunning)
             return message.channel.send(musicResponses.triviaRunning);
 
-        const embed = new MessageEmbed()
-            .setColor(musicEmbeds.stopEmbed.color)
-            .setAuthor(musicEmbeds.stopEmbed.author.name)
-            .setFooter(`Stopped by ${user.username}`, user.avatarURL());
-
         message.guild.musicData.isPlaying = false;
         message.guild.musicData.nowPlaying = null;
         message.guild.musicData.queue.length = 0;
         message.guild.musicData.songDispatcher.end();
         message.guild.musicData.songDispatcher = null;
-        message.channel.send(embed);
+        return message.channel.send(embed);
     },
 };

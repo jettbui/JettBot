@@ -1,13 +1,13 @@
 {
     "globalResponses": {
         "commandDisabled": "That command is currently disabled.",
-        "cooldown": "The command is currently on cooldown.",
+        "cooldown": "That command is currently on cooldown.",
         "error": "An error occurred while executing a command.",
         "invalidArgs": "Invalid arguments provided.",
         "noCommand": "That command does not exist.",
         "noPermission": "You do not have permission to use that command.",
-        "notAuthorized": "Only authorized users may use this command.",
-        "serverOnly": "You may only use this command in a server."
+        "notAuthorized": "You do not have authorization to use that command.",
+        "serverOnly": "That command can only be used in a server."
     },
     "_8ballResponses": {
         "answers": [
@@ -46,7 +46,7 @@
         "selfUser": "You cannot kick yourself."
     },
     "musicResponses": {
-        "error": "An error occurred trying to play a song.",
+        "error": "An error occurred while trying to play a song.",
         "invalidPlaylist": "Unable to fetch playlist.",
         "invalidSong": "Unable to fetch song.",
         "invalidVoiceChannel": "You must be in the same voice channel as the bot.",
@@ -57,14 +57,14 @@
         "voteRunning": "There is already a skip vote running."
     },
     "musictriviaResponses": {
-        "isNotParticipating": "You must be participating in the trivia",
+        "isNotParticipating": "You must be participating in the trivia.",
         "noTriviaRunning": "There is no trivia running.",
         "noVoiceChannel": "You must be in a voice channel.",
         "triviaRunning": "There is already a trivia running.",
         "triviaStopped": "Music trivia stopped."
     },
     "pollResponses": {
-        "tooLittleOptions": "You must provide at least two options.",
+        "tooLittleOptions": "You must provide at least 2 options.",
         "tooManyOptions": "You can only provide at most 10 options.",
         "pollRunning": "There is currently a poll running."
     },
@@ -74,12 +74,12 @@
     },
     "rollResponses": {
         "answers": [
-            "<:one:735714655934349385>",
-            "<:two:735714655934349385>",
-            "<:three:735714655934349385>",
-            "<:four:735714655934349385>",
-            "<:five:735714655934349385>",
-            "<:six:735714655934349385>"
+            "1️⃣",
+            "2️⃣",
+            "3️⃣",
+            "4️⃣",
+            "5️⃣",
+            "6️⃣"
         ]
     },
     "userinfoResponses": {

@@ -1,6 +1,6 @@
-const { musicEmbeds } = require("../../json/embeds.json"),
-    { musicResponses } = require("../../json/responses.json"),
-    { MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js"),
+    { globalEmbed, musicEmbeds: { skipEmbed } } = require("../../json/embeds.json"),
+    { musicResponses } = require("../../json/responses.json");
 
 module.exports = {
     name: "skip",
@@ -8,13 +8,13 @@ module.exports = {
     category: "music",
     aliases: [],
     args: false,
-    cooldown: 5,
     guildOnly: true,
     async execute(message) {
         const voiceChannel = message.member.voice.channel;
         const currentSong = message.guild.musicData.nowPlaying;
         const user = message.member.user;
-        let voteCount = 0;
+        const interval = 10000; // interval to update timer (ms)
+        let timer = 30000; // time to run poll (ms)
         const voteLimit = Math.floor((voiceChannel.members.size - 1) / 2) + 1;
         const voteUsers = [];
 
@@ -30,64 +30,68 @@ module.exports = {
         if (message.guild.musicData.skipVoteRunning)
             return message.channel.send(musicResponses.voteRunning);
 
+        const embed = new MessageEmbed()
+            .setColor(globalEmbed.color)
+            .setTitle(`🎵   ${currentSong.title}`)
+            .setThumbnail(currentSong.thumbnail);
+
         // handle 1-2 users
         if (voiceChannel.members.size < 3) {
-            const skipEmbed = new MessageEmbed()
-                                .setColor(musicEmbeds.skipEmbed.color)
-                                .setAuthor(musicEmbeds.skipEmbed.author.name)
-                                .setTitle(`<:musical_note:746147269488803931>   ${currentSong.title}`)
-                                .setThumbnail(currentSong.thumbnail)
-                                .setFooter(`Skipped by ${user.username}`, user.avatarURL());
+            embed
+                .setAuthor(skipEmbed.author.name)
+                .setFooter(`Skipped by ${user.username}`, user.avatarURL());
 
-            message.channel.send(skipEmbed);
             message.guild.musicData.songDispatcher.end();
-            return;
+            return message.channel.send(embed);
         }
+
         message.guild.musicData.skipVoteRunning = true;
 
-        const embed = new MessageEmbed()
-            .setColor(musicEmbeds.voteSkipEmbed.color)
-            .setAuthor(`Vote to Skip (${voteCount}/${voteLimit} votes)`)
-            .setTitle(`<:musical_note:746147269488803931>   ${currentSong.title}`)
-            .setThumbnail(currentSong.thumbnail)
-            .setFooter(`Called by ${user.username}`, user.avatarURL());
+        embed
+            .setAuthor(`Vote to Skip (${voteUsers.length}/${voteLimit} votes)`)
+            .setFooter(`Called by ${user.username} (${timer / 1000} seconds left)`, user.avatarURL());
 
         message.channel.send(embed)
-            .then((message) => {
+            .then(message => {
                 const filter = (reaction, user) => {
                     return reaction.emoji.name === "⏩" && user.id !== message.client.user.id
                 };
-                const collector = message.createReactionCollector(filter, { time: 60000 });
-                message.guild.musicData.skipCollector = collector;
-                collector
+                const stopwatch = setInterval(() => {
+                    timer = timer - interval;
+                    embed.setFooter(`Called by ${user.username} (${timer / 1000} seconds left)`, user.avatarURL());
+                    message.edit(embed);
+                }, interval);
+                const collector = message.createReactionCollector(filter, { time: 30000 });
+                message.guild.musicData.skipCollector = collector
                     .on("collect", (reaction, user) => {
-                        if (voteUsers.includes(user.id)) return;
+                        if (voteUsers.includes(user)) return;
 
-                        voteCount += 1;
-                        voteUsers.push(user.id)
+                        voteUsers.push(user)
 
-                        if (voteCount >= voteLimit) {
+                        if (voteUsers.length >= voteLimit) {
                             collector.stop();
                         } else {
-                            embed.setAuthor(`Vote to Skip (${voteCount}/${voteLimit} votes)`);
+                            embed.setAuthor(`Vote to Skip (${voteUsers.length}/${voteLimit} votes)`);
                             message.edit(embed);
                         }
                     })
                     .on("end", () => {
-                        if (voteCount >= voteLimit) {
-                            const skipEmbed = new MessageEmbed()
-                                .setColor(musicEmbeds.skipEmbed.color)
-                                .setAuthor(musicEmbeds.skipEmbed.author.name)
-                                .setTitle(`<:musical_note:746147269488803931>   ${currentSong.title}`)
-                                .setThumbnail(currentSong.thumbnail)
-                                .setFooter(`Skipped by ${user.username}`, user.avatarURL());
+                        clearInterval(stopwatch);
 
-                            message.edit(skipEmbed);
+                        if (voteUsers.length >= voteLimit) {
+                            const voteUsersString = voteUsers.map(u => u.username).join(", ");
+
+                            embed
+                                .setAuthor(skipEmbed.author.name)
+                                .setFooter(`Vote Skipped by ${voteUsersString}`, user.avatarURL());
+
                             message.guild.musicData.songDispatcher.end();
                         } else {
-                            embed.setAuthor(`Vote to Skip (${voteCount}/${voteLimit} votes) - Vote Ended`);
-                            message.edit(embed);
+                            embed
+                                .setAuthor(`Vote to Skip (${voteUsers.length}/${voteLimit} votes)`)
+                                .setFooter(`Called by ${user.username} (Vote Ended)`, user.avatarURL());
                         }
+                        message.edit(embed);
                         message.guild.musicData.skipVoteRunning = false;
                         message.guild.musicData.skipCollector = null;
                     });

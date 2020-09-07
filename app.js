@@ -1,7 +1,7 @@
 const { Structures, Collection } = require("discord.js"),
     Client = require("./client/Client"),
     config = require("./config.json"),
-    fs = require("fs"),
+    { readdirSync } = require("fs"),
     { exit } = require("process"),
     { globalResponses } = require("./json/responses.json");
 
@@ -14,7 +14,7 @@ Structures.extend("Guild", (Guild) => {
 
             this.cooldowns = new Collection();
             this.isPollRunning = false;
-            this.musicData = { // music data
+            this.musicData = {
                 queue: [],
                 isPlaying: false,
                 skipVoteRunning: false,
@@ -23,7 +23,13 @@ Structures.extend("Guild", (Guild) => {
                 songDispatcher: null,
                 volume: 0.3
             };
-            this.triviaData = { // music trivia data
+            this.musicTriviaData = {
+                isTriviaRunning: false,
+                wasTriviaEndCalled: false,
+                triviaQueue: [],
+                triviaScore: new Map()
+            };
+            this.triviaData = {
                 isTriviaRunning: false,
                 wasTriviaEndCalled: false,
                 triviaQueue: [],
@@ -41,14 +47,14 @@ const client = new Client(config);
 // import commands
 console.log("Loading the following commands:");
 
-const commandFiles = fs.readdirSync("./commands", { withFileTypes: true });
+const commandFiles = readdirSync("./commands", { withFileTypes: true });
 
 for (const file of commandFiles) {
     if (file.name.endsWith(".js")) {
         const command = require(`./commands/${file.name}`);
         client.commands.set(command.name, command);
     } else if (file.isDirectory()) {
-        const subfolder = fs.readdirSync(`./commands/${file.name}`);
+        const subfolder = readdirSync(`./commands/${file.name}`);
         if (!subfolder.length) continue;
         for (const subfile of subfolder) {
             if (subfile.endsWith(".js")) {
@@ -56,10 +62,10 @@ for (const file of commandFiles) {
                 client.commands.set(command_2.name, command_2);
             }
         }
-        console.log(`${subfolder.map(s => `${file.name}/${s}`).join("\n")}`);
+        console.log(`${subfolder.map(s => `${file.name}/${s}`).join("   ")}`);
     }
 }
-console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join("\n")}\n`);
+console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join("  ")}\n`);
 
 // client events
 client.on("ready", () => {
@@ -111,7 +117,7 @@ client.on("message", (message) => {
         let response = globalResponses.invalidArgs;
 
         if (command.usage)
-            response += `\nUsage: ${client.config.prefix}${command.name} ${command.usage}`;
+            response += `\n**Usage:** ${client.config.prefix}${command.name} ${command.usage}`;
 
         return message.channel.send(response);
     }
