@@ -28,12 +28,16 @@ module.exports = {
                 .addFields(generalEmbed.fields);
         } else if (category === "all") { // all commands
             const allCommands = commands.filter((cmd) => categories.includes(cmd.category) && !cmd.disabled);
+            const sortedCommands = allCommands.array().sort((a, b) => {
+                const aLetter = a.name.toLowerCase();
+                const bLetter = b.name.toLowerCase();
+                return (aLetter < bLetter) ? -1 : (aLetter > bLetter) ? 1 : 0;
+            });
+    
+            embed
+                .setTitle(allEmbed.title);
 
-            embed.setTitle(allEmbed.title);
-
-            // TODO alphabetically sort commands
-
-            for (const command of allCommands.array()) {
+            for (const command of sortedCommands) {
                 if (command.usage)
                     embed.addField(`${message.client.config.prefix}${command.name} ${command.usage}`,
                         command.description, true);
@@ -118,5 +122,18 @@ module.exports = {
                 console.error(error);
                 return message.channel.send(helpResponses.error);
             });
+    },
+    alphabetize(arr) {
+        return Object.values(
+            arr.reduce((acc, word) => {
+                let firstLetter = word.name[0].toLocaleUpperCase();
+                console.log(firstLetter);
+                if (!acc[firstLetter])
+                    acc[firstLetter] = { title: firstLetter, data: [word] };
+                else
+                    acc[firstLetter].data.push(word);
+                return acc;
+            }, {})
+        );
     },
 };
