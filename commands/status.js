@@ -7,7 +7,8 @@ module.exports = {
     guildOnly: false,
     devOnly: true,
     execute(message, args) {
-        message.client.user.setActivity(args.join(" "), { type: "PLAYING" });
+        const status = args.join(" ");
+        message.client.user.setActivity(status, { type: "PLAYING" });
         return message.channel.send(`Status changed to '${status}'`);
     },
 };
