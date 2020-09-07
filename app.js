@@ -147,8 +147,11 @@ client.on("message", (message) => {
         console.log(`${message.author.tag} (${message.guild}) executed '${client.config.prefix}${command.name}': ${message.content}`);
         command.execute(message, args);
     } catch (error) {
+        const dev = client.users.cache.get(message.client.config.ownerId);
+        
+        dev.send(`**Error executing command by ${message.author.tag} (${message.guild}):** '${message.content}'`);
         console.error("An error occurred executing a command:\n", error);
-        message.channel.send(globalResponses.error);
+        return message.channel.send(globalResponses.error);
     }
 });
 

@@ -2,7 +2,7 @@
     "globalResponses": {
         "commandDisabled": "That command is currently disabled.",
         "cooldown": "That command is currently on cooldown.",
-        "error": "An error occurred while executing a command.",
+        "error": "An error occurred while executing a command. Use !report to report issues.",
         "invalidArgs": "Invalid arguments provided.",
         "noCommand": "That command does not exist.",
         "noPermission": "You do not have permission to use that command.",
