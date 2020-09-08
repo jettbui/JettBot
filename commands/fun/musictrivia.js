@@ -52,7 +52,7 @@ module.exports = {
                 songsArray = triviaSongs.classics;
         }
 
-        const randomSongs = this.getRandom(songsArray, 5);
+        const randomSongs = this.getRandom(songsArray, 10);
 
         message.channel.send(embed);
 
