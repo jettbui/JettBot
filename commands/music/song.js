@@ -29,14 +29,14 @@ module.exports = {
         return message.channel.send(embed);
     },
     formatDuration(durationObj) {
-        const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
-            durationObj.minutes ? durationObj.minutes : '00'
+        const duration = `${durationObj.hours ? (durationObj.hours + ":") : ""}${
+            durationObj.minutes ? durationObj.minutes : "00"
             }:${
             (durationObj.seconds < 10)
-                ? ('0' + durationObj.seconds)
+                ? ("0" + durationObj.seconds)
                 : (durationObj.seconds
                     ? durationObj.seconds
-                    : '00')
+                    : "00")
             }`;
         return duration;
     },
@@ -53,11 +53,11 @@ module.exports = {
         let totalDurationInMS = 0;
 
         Object.keys(totalDurationObj).forEach(function (key) {
-            if (key == 'hours') {
+            if (key == "hours") {
                 totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 3600000;
-            } else if (key == 'minutes') {
+            } else if (key == "minutes") {
                 totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 60000;
-            } else if (key == 'seconds') {
+            } else if (key == "seconds") {
                 totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 100;
             }
         });
@@ -65,19 +65,19 @@ module.exports = {
         const playBackBarLocation = Math.round(
             (passedTimeInMS / totalDurationInMS) * 10
         );
-        let playBack = '';
+        let playBack = "";
 
         for (let i = 1; i < 21; i++) {
             if (playBackBarLocation == 0) {
-                playBack = ':white_circle:▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
+                playBack = "⚪️▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬";
                 break;
             } else if (playBackBarLocation == 10) {
-                playBack = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬:white_circle:';
+                playBack = "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬⚪️";
                 break;
             } else if (i == playBackBarLocation * 2) {
-                playBack = playBack + ':white_circle:';
+                playBack = playBack + "⚪️";
             } else {
-                playBack = playBack + '▬';
+                playBack = playBack + "▬";
             }
         }
 

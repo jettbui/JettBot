@@ -54,9 +54,9 @@ module.exports = {
         
         for (let i = 0; i < 10; i++) {
             if (i >= limit) {
-                bar = bar + ":red_square:"
+                bar = bar + "🟥"
             } else {
-                bar = bar + ":green_square:";
+                bar = bar + "🟩";
             }
         }
         return bar;

@@ -115,10 +115,10 @@
     },
     "musictriviaEmbeds": {
         "resultsEmbed": {
-            "title": "📀    Music Trivia Results"
+            "title": "📀   Music Trivia Results"
         },
         "startEmbed": {
-            "title": "📀    Music Trivia Started",
+            "title": "📀   Music Trivia Started",
             "description": "You have 30 seconds to guess the artist and name of the song!"
         }
     }
