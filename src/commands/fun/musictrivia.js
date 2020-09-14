@@ -6,10 +6,11 @@ const { MessageEmbed } = require("discord.js"),
 
 module.exports = {
     name: "musictrivia",
-    description: "Start a music trivia quiz",
+    description: "Start a music trivia",
     category: "fun",
     aliases: ["mt"],
     args: false,
+    usage: "[stop/option]",
     guildOnly: true,
     execute(message, args) {
         const voiceChannel = message.member.voice.channel;
@@ -66,7 +67,7 @@ module.exports = {
             message.guild.musicTriviaData.triviaQueue.push(song);
         }
 
-        const channelInfo = Array.from(message.member.voice.channel.members.entries());
+        const channelInfo = Array.from(voiceChannel.members.entries());
 
         channelInfo.forEach(user => {
             if (user[1].user.bot) return;
@@ -105,7 +106,7 @@ module.exports = {
                                         m.author.username,
                                         message.guild.musicTriviaData.triviaScore.get(m.author.username) + 1
                                     );
-                                    m.react('✔️');
+                                    m.react("✔️");
                                     if (songNameFound && songArtistFound) return collector.stop();
                                 } else if (m.content.toLowerCase() === triviaQueue[0].artist.toLowerCase()) {
                                     if (songArtistFound) return;
@@ -115,26 +116,26 @@ module.exports = {
                                         m.author.username,
                                         message.guild.musicTriviaData.triviaScore.get(m.author.username) + 1
                                     );
-                                    m.react('✔️');
+                                    m.react("✔️");
                                     if (songNameFound && songArtistFound) return collector.stop();
                                 } else if (m.content.toLowerCase() === triviaQueue[0].artist.toLowerCase() +
-                                    ' ' + triviaQueue[0].title.toLowerCase() ||
+                                    " " + triviaQueue[0].title.toLowerCase() ||
                                     m.content.toLowerCase() === triviaQueue[0].title.toLowerCase() +
-                                    ' ' + triviaQueue[0].artist.toLowerCase()) {
+                                    " " + triviaQueue[0].artist.toLowerCase()) {
                                     if ((songArtistFound && !songNameFound) ||
                                         (songNameFound && !songArtistFound)) {
                                         message.guild.musicTriviaData.triviaScore.set(
                                             m.author.username,
                                             message.guild.musicTriviaData.triviaScore.get(m.author.username) + 1
                                         );
-                                        m.react('✔️');
+                                        m.react("✔️");
                                         return collector.stop();
                                     }
                                     message.guild.musicTriviaData.triviaScore.set(
                                         m.author.username,
                                         message.guild.musicTriviaData.triviaScore.get(m.author.username) + 2
                                     );
-                                    m.react('✔️');
+                                    m.react("✔️");
                                     return collector.stop();
                                 }
                             })
@@ -158,7 +159,7 @@ module.exports = {
                                 triviaQueue.shift();
                                 dispatcher.end();
                                 return;
-                            })
+                            });
 
                     })
                     .on("finish", () => {
@@ -195,7 +196,7 @@ module.exports = {
             len = arr.length,
             taken = new Array(len);
         if (n > len)
-            throw new RangeError('getRandom: more elements taken than available');
+            throw new RangeError("getRandom: more elements taken than available");
         while (n--) {
             var x = Math.floor(Math.random() * len);
             result[n] = arr[x in taken ? taken[x] : x];
@@ -205,7 +206,7 @@ module.exports = {
     },
     getLeaderboard(arr) {
         if (!arr) return;
-        let leaderboard = '';
+        let leaderboard = "";
 
         leaderboard = `👑   **${arr[0][0]}:** ${arr[0][1]} points`;
 

@@ -9,7 +9,7 @@ module.exports = {
     execute(message, args) {
         const guild = message.client.guilds.cache.get(args[0]);
 
-        if (!guild) return message.channel.send("Invalid guild.")
+        if (!guild) return message.channel.send("Invalid guild.");
 
         message.channel.send(`Left ${guild.name} (${guild.id}).`);
         guild.leave();

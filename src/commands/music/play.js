@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js"),
     Youtube = require("simple-youtube-api"),
     ytdl = require("ytdl-core"),
-    { youtubeAPIkey } = require("../../config.json"),
+    { youtubeAPIkey } = require("../../../config.json"),
     { globalEmbed, musicEmbeds: { queueEmbed, songEmbed } } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
 const youtube = new Youtube(youtubeAPIkey);
@@ -53,14 +53,14 @@ module.exports = {
                 }
             } catch (error) {
                 console.error(error);
-                return message.channel.send(musicResponses.invalidPlaylist)
+                return message.channel.send(musicResponses.invalidPlaylist);
             }
         } else if (query.match(/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/)) { // song url
             try {
                 query = query
-                    .replace(/(>|<)/gi, '')
+                    .replace(/(>|<)/gi, "")
                     .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-                const id = query[2].split(/[^0-9a-z_\-]/i)[0];
+                const id = query[2].split(/[^0-9a-z_\-]/i)[0]; // eslint-disable-line no-useless-escape
                 const video = await youtube.getVideoByID(id);
                 const songObj = this.constructSongObj(video, voiceChannel, user);
 
@@ -74,7 +74,7 @@ module.exports = {
                         .setTitle(`🎵   ${songObj.title}`)
                         .setThumbnail(songObj.thumbnail)
                         .addField("Duration", songObj.duration);
-                    return message.channel.send(embed)
+                    return message.channel.send(embed);
                 }
             } catch (error) {
                 console.error(error);
@@ -100,7 +100,7 @@ module.exports = {
                     .setTitle(`🎵   ${songObj.title}`)
                     .setThumbnail(songObj.thumbnail)
                     .addField("Duration", songObj.duration);
-                return message.channel.send(embed)
+                return message.channel.send(embed);
             }
         } catch (error) {
             console.error(error);
@@ -123,15 +123,15 @@ module.exports = {
         };
     },
     formatDuration(durationObj) {
-        const duration = `${durationObj.hours ? durationObj.hours + ':' : ''}${
-            durationObj.minutes ? durationObj.minutes : '00'
-            }:${
+        const duration = `${durationObj.hours ? durationObj.hours + ":" : ""}${
+            durationObj.minutes ? durationObj.minutes : "00"
+        }:${
             durationObj.seconds < 10
-                ? '0' + durationObj.seconds
+                ? "0" + durationObj.seconds
                 : durationObj.seconds
                     ? durationObj.seconds
-                    : '00'
-            }`;
+                    : "00"
+        }`;
         return duration;
     },
     playSong(message, queue) {
@@ -190,6 +190,6 @@ module.exports = {
                 message.guild.musicData.songDispatcher = null;
                 message.guild.me.voice.channel.leave();
                 return message.channel.send(musicResponses.error);
-            })
+            });
     }
 };

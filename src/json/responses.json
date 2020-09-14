@@ -3,11 +3,12 @@
         "commandDisabled": "That command is currently disabled.",
         "cooldown": "That command is currently on cooldown.",
         "error": "An error occurred while executing a command. Use !report to report issues.",
-        "invalidArgs": "Invalid arguments provided.",
         "noCommand": "That command does not exist.",
         "noPermission": "You do not have permission to use that command.",
         "notAuthorized": "You do not have authorization to use that command.",
-        "serverOnly": "That command can only be used in a server."
+        "serverOnly": "That command can only be used in a server.",
+        "tooLittleArgs": "Too little arguments provided.",
+        "tooManyArgs": "Too many arguments provided."
     },
     "_8ballResponses": {
         "answers": [
@@ -81,6 +82,12 @@
             "5️⃣",
             "6️⃣"
         ]
+    },
+    "triviaResponses": {
+        "isNotParticipating": "You must be participating in the trivia.",
+        "noTriviaRunning": "There is no trivia running.",
+        "triviaRunning": "There is already a trivia running.",
+        "triviaStopped": "Trivia stopped."
     },
     "userinfoResponses": {
         "invalidUser": "That user does not exist."

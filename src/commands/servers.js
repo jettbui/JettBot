@@ -5,8 +5,8 @@ module.exports = {
     args: false,
     guildOnly: false,
     devOnly: true,
-    execute(message, args) {
-        let output = "Online on the following servers:\n"
+    execute(message) {
+        let output = "Online on the following servers:\n";
         message.client.guilds.cache.forEach(guild => { output = output + `- ${guild.name} (${guild.id})\n`; });
         return message.channel.send(output);
     },

@@ -1,19 +1,19 @@
 const { MessageEmbed } = require("discord.js"),
-    { rollResponses } = require("../../json/responses.json"),
+    { flipResponses } = require("../../json/responses.json"),
     { globalEmbed } = require("../../json/embeds.json");
 
 module.exports = {
-    name: "roll",
-    description: "Roll a dice",
+    name: "flip",
+    description: "Flip a coin",
     category: "fun",
-    aliases: ["dice"],
+    aliases: ["coin"],
     args: false,
     execute(message) {
-        const answers = rollResponses.answers;
+        const answers = flipResponses.answers;
         const answer = answers[Math.floor(Math.random() * answers.length)];
         const embed = new MessageEmbed()
             .setColor(globalEmbed.color)
-            .setTitle(`🎲   Rolled a dice`)
+            .setTitle("💿   Flipped a coin")
             .setDescription(`**Answer:** ${answer}`);
 
         return message.channel.send(embed);

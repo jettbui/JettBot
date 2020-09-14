@@ -6,13 +6,13 @@ const { MessageEmbed } = require("discord.js"),
 
 module.exports = {
     name: "help",
-    description: "Sends available commands for JettBot",
+    description: "Sends available commands",
     category: "informational",
     aliases: ["commands"],
     args: false,
     usage: "[command]",
     execute(message, args) {
-        const { commands } = message.client;
+        const commands = message.client.commands;
         const categories = ["fun", "informational", "moderation", "music", "utility"];
         let category = (args[0]) ? args[0].toLowerCase() : null;
 

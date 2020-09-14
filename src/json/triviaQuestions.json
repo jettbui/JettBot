@@ -1,0 +1,38 @@
+{
+    "programming": [
+        {
+            "prompt": "In Java, what modifier makes it so that a variable cannot be reassigned?",
+            "answer": "final"
+        },
+        {
+            "prompt": "In Javascript, what modifier makes it so that a variable cannot be reassigned?",
+            "answer": "const"
+        },
+        {
+            "prompt": "In Python3, what is the operator for floor division?",
+            "answer": "//"
+        },
+        {
+            "prompt": "What is the process of breaking down a function with multiple arguments into a series of functions that take only one argument?",
+            "answer": "currying"
+        },
+        {
+            "prompt": "```This is a test question, type SUP.\nHello```",
+            "answer": "SUP"
+        },
+        {
+            "prompt": "Operator ________ is where multiple of the same function exists with different parameters.",
+            "answer": "overloading"
+        },
+        {
+            "prompt": "Operator ________ wip.",
+            "answer": "overriding"
+        }
+    ],
+    "general": [
+        {
+            "prompt": "What's 9 + 10?",
+            "answer": "19"
+        }
+    ]
+}

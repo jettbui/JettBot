@@ -1,6 +1,6 @@
 const { Structures, Collection } = require("discord.js"),
-    Client = require("./client/Client"),
-    config = require("./config.json"),
+    Client = require("./client"),
+    config = require("../config.json"),
     { readdirSync } = require("fs"),
     { exit } = require("process"),
     { globalResponses } = require("./json/responses.json");
@@ -47,14 +47,14 @@ const client = new Client(config);
 // import commands
 console.log("Loading the following commands:");
 
-const commandFiles = readdirSync("./commands", { withFileTypes: true });
+const commandFiles = readdirSync(`${__dirname}/commands`, { withFileTypes: true });
 
 for (const file of commandFiles) {
     if (file.name.endsWith(".js")) {
         const command = require(`./commands/${file.name}`);
         client.commands.set(command.name, command);
     } else if (file.isDirectory()) {
-        const subfolder = readdirSync(`./commands/${file.name}`);
+        const subfolder = readdirSync(`${__dirname}/commands/${file.name}`);
         if (!subfolder.length) continue;
         for (const subfile of subfolder) {
             if (subfile.endsWith(".js")) {
@@ -69,7 +69,7 @@ console.log(`${commandFiles.map(f => f.name).filter(f => f.endsWith(".js")).join
 
 // client events
 client.on("ready", () => {
-    console.log("Online on the following servers:")
+    console.log("Online on the following servers:");
     client.guilds.cache.forEach(guild => { console.log(`- ${guild.name}`); });
     console.log(`\nLogged in as ${client.user.tag}.\n`);
     client.user.setActivity(client.config.defaultActivity, { type: "PLAYING" });
@@ -155,7 +155,7 @@ client.on("message", (message) => {
     }
 });
 
-client.on('voiceStateUpdate', async (___, newState) => {
+client.on("voiceStateUpdate", async (___, newState) => {
     if (
         newState.member.user.bot &&
         !newState.channelID &&

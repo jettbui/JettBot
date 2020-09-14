@@ -7,6 +7,7 @@ module.exports = {
     description: "Stop playing music",
     category: "music",
     aliases: [],
+    permissions: ["ADMINISTRATOR"],
     args: false,
     guildOnly: true,
     async execute(message) {

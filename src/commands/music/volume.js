@@ -22,7 +22,7 @@ module.exports = {
         if (!args[0]) {
             embed
                 .setTitle(`${currVolume * 100}%`)
-                .setDescription(this.volumeBar(currVolume))
+                .setDescription(this.volumeBar(currVolume));
             return message.channel.send(embed);
         } 
 
@@ -49,12 +49,12 @@ module.exports = {
         return message.channel.send(embed);
     },
     volumeBar(volume) {
-        const limit = Math.round(volume * 10)
+        const limit = Math.round(volume * 10);
         let bar = `${(limit > 7) ? "🔊" : (limit > 2) ? "🔉" : "🔈"}   `;
         
         for (let i = 0; i < 10; i++) {
             if (i >= limit) {
-                bar = bar + "🟥"
+                bar = bar + "🟥";
             } else {
                 bar = bar + "🟩";
             }

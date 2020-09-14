@@ -8,7 +8,7 @@ module.exports = {
     aliases: [],
     args: true,
     usage: "<question> [options...]",
-    exampleUsage: 'poll "What should I eat for dinner?" "Hamburger" "Pizza" "Spaghetti"',
+    exampleUsage: "poll \"What should I eat for dinner?\" \"Hamburger\" \"Pizza\" \"Spaghetti\"",
     guildOnly: true,
     async execute(message, args) {
         const options = new Map();
@@ -66,7 +66,7 @@ module.exports = {
                 message.createReactionCollector(filter, { time: timer })
                     .on("collect", (reaction, user) => {
                         if (voteUsers.includes(user.id)) return;
-                        voteUsers.push(user.id)
+                        voteUsers.push(user.id);
 
                         const votes = options.get(reaction.emoji.name);
                         options.set(reaction.emoji.name, votes + 1);
@@ -95,10 +95,11 @@ module.exports = {
     extractArgs(str) {
         const re = /"(.*?)"/g;
         const result = [];
-        let current;
+        let current = re.exec(str);
 
-        while (current = re.exec(str)) {
+        while (current) {
             result.push(current.pop());
+            current = re.exec(str);
         }
 
         return result.length > 0 ? result : [str];
@@ -118,7 +119,7 @@ module.exports = {
         let output = "";
         let optionsIndex = 0;
 
-        options.forEach((value, key) => {
+        options.forEach((value) => {
             const percentageValue = (value / voteUsers.length) * 100;
             const percentage = (isNaN(percentageValue)) ? 0 : Math.round(percentageValue);
             output = output + `**${percentage}%** ${parsedArgs[optionsIndex]}\n`;

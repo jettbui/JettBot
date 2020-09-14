@@ -54,7 +54,8 @@ module.exports = {
         message.channel.send(embed)
             .then(message => {
                 const filter = (reaction, user) => {
-                    return reaction.emoji.name === "⏩" && user.id !== message.client.user.id
+                    return reaction.emoji.name === "⏩" && 
+                        user.id !== message.client.user.id;
                 };
                 const stopwatch = setInterval(() => {
                     timer = timer - interval;
@@ -66,7 +67,7 @@ module.exports = {
                     .on("collect", (reaction, user) => {
                         if (voteUsers.includes(user)) return;
 
-                        voteUsers.push(user)
+                        voteUsers.push(user);
 
                         if (voteUsers.length >= voteLimit) {
                             collector.stop();
@@ -102,6 +103,6 @@ module.exports = {
                 console.log(error);
                 message.guild.musicData.skipVoteRunning = false;
                 message.guild.musicData.skipCollector = null;
-            })
+            });
     }
 };
