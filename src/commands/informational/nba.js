@@ -12,6 +12,7 @@ module.exports = {
     aliases: [],
     args: false,
     usage: "[date]",
+    disabled: true,
     execute(message, args) {
         // validity checks
         if(args[0] && !/^\d{4}-\d{2}-\d{2}$/.test(args[0])) return message.channel.send(nbaResponses.invalidDate);
@@ -54,9 +55,9 @@ module.exports = {
                         if (game.playoffs) desc = desc +
                             `\nGame ${game.playoffs.gameNumInSeries} (${game.playoffs.seriesSummaryText})`;
                     } else { // past game
-                        const hTeamScore = (game.hTeam.score < game.vTeam.score) ? 
+                        const hTeamScore = (parseInt(game.hTeam.score) > parseInt(game.vTeam.score)) ? 
                             `__${game.hTeam.score}__` : game.hTeam.score;
-                        const vTeamScore = (game.vTeam.score < game.hTeam.score) ?
+                        const vTeamScore = (parseInt(game.vTeam.score) > parseInt(game.hTeam.score)) ?
                             `__${game.vTeam.score}__` : game.vTeam.score;
                         head = `${vTeam} ${vTeamScore} - ${hTeamScore} ${hTeam} | FINAL`;
                         desc = `${game.nugget.text}`;
