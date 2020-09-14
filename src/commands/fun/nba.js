@@ -11,6 +11,7 @@ module.exports = {
     args: false,
     usage: "[args]",
     guildOnly: true,
+    disabled: true,
     execute(message) {
         const todayDate = tz(Date.now(), "America/Los_Angeles");
         let desc = "No games today.";
