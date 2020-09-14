@@ -1,8 +1,8 @@
 {
     "env": {
-        "browser": true,
+        "node": true,
         "commonjs": true,
-        "es2020": true
+        "es6": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -10,20 +10,16 @@
     },
     "rules": {
         "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "windows",
+            "warn",
+            4,
             { "SwitchCase": 1 }
         ],
         "quotes": [
-            "error",
+            "warn",
             "double"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
         ]
     }
