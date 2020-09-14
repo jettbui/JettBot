@@ -64,6 +64,9 @@
         "triviaRunning": "There is already a trivia running.",
         "triviaStopped": "Music trivia stopped."
     },
+    "nbaResponses": {
+        "invalidDate": "Invalid date entered. (Format: yyyy-mm-dd)"
+    },
     "pollResponses": {
         "tooLittleOptions": "You must provide at least 2 options.",
         "tooManyOptions": "You can only provide at most 10 options.",
