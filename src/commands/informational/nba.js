@@ -32,7 +32,6 @@ module.exports = {
                 if (!body.games.length) embed.setDescription("No games today.");
 
                 body.games.forEach((game) => {
-                    console.log(game);
                     const gameDate = tz(game.startTimeUTC, "America/Los_Angeles");
                     const hTeam = `${nbaTeams[game.hTeam.triCode]} (${game.hTeam.triCode})`;
                     const vTeam = `${nbaTeams[game.vTeam.triCode]} (${game.vTeam.triCode})`;
