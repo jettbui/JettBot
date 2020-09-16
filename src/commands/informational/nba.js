@@ -44,7 +44,7 @@ module.exports = {
                         if (game.isHalftime) desc = desc + "Halftime";
                         else if (game.isEndOfPeriod) desc = desc + "End of Period";
                         else if (game.period.current > game.period.maxRegular) desc = desc + "Overtime";
-                        else if (game.clock == "") desc = desc + "Not started";
+                        else if (game.clock == "") desc = desc + "Paused";
                         else desc = desc + "Regulation";
                         if (game.playoffs) desc = desc + 
                             `\nGame ${game.playoffs.gameNumInSeries} (${game.playoffs.seriesSummaryText})`;
