@@ -12,7 +12,6 @@ module.exports = {
     aliases: [],
     args: false,
     usage: "[date]",
-    disabled: true,
     execute(message, args) {
         // validity checks
         if(args[0] && !/^\d{4}-\d{2}-\d{2}$/.test(args[0])) return message.channel.send(nbaResponses.invalidDate);
@@ -32,6 +31,7 @@ module.exports = {
                 if (!body.games.length) embed.setDescription("No games today.");
 
                 body.games.forEach((game) => {
+                    console.log(game);
                     const gameDate = tz(game.startTimeUTC, "America/Los_Angeles");
                     const hTeam = `${nbaTeams[game.hTeam.triCode]} (${game.hTeam.triCode})`;
                     const vTeam = `${nbaTeams[game.vTeam.triCode]} (${game.vTeam.triCode})`;
@@ -40,12 +40,12 @@ module.exports = {
 
                     if (game.isGameActivated) { // live game
                         head = `🔴 LIVE | ${hTeam} ${game.hTeam.score} - ${game.vTeam.score} ${vTeam}`;
-                        desc = `Q${game.period.current} | ${game.clock} | `;
+                        desc = `Q${game.period.current} ${game.clock} | `;
                         if (game.isHalftime) desc = desc + "Halftime";
                         else if (game.isEndOfPeriod) desc = desc + "End of Period";
                         else if (game.period.current > game.period.maxRegular) desc = desc + "Overtime";
+                        else if (game.clock == "") desc = desc + "Not started";
                         else desc = desc + "Regulation";
-                        desc = desc + `\n${game.nugget.text}`;
                         if (game.playoffs) desc = desc + 
                             `\nGame ${game.playoffs.gameNumInSeries} (${game.playoffs.seriesSummaryText})`;
                     } else if (todayDate.isBefore(gameDate)) { // future game
