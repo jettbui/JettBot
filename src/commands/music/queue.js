@@ -6,7 +6,7 @@ module.exports = {
     name: "queue",
     description: "Show the music queue",
     category: "music",
-    aliases: [],
+    aliases: ["q"],
     args: false,
     guildOnly: true,
     async execute(message) {
