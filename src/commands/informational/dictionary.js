@@ -21,6 +21,7 @@ module.exports = {
             "exclamation": "exclamation"
         };
 
+        const requesterId = message.author.id
         const terms = args.join(" ");
         const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${terms}`;
         const embed = new MessageEmbed()
@@ -58,7 +59,7 @@ module.exports = {
                         const filter = (reaction, user) => {
                             return (
                                 ["⏭", "⏩"].includes(reaction.emoji.name) &&
-                                user.id !== message.author.id
+                                user.id !== requesterId
                             );
                         };
 
