@@ -21,7 +21,7 @@ module.exports = {
         const url = `http://data.nba.net/10s/prod/v1/${date.format("YYYYMMDD")}/scoreboard.json`;
         const embed = new MessageEmbed()
             .setColor(globalEmbed.color)
-            .setFooter(globalEmbed.footer.text)
+            .setFooter("Provided by NBA • JettBot")
             .setThumbnail("https://cdn.freebiesupply.com/images/large/2x/nba-logo-transparent.png")
             .setTitle(`NBA Scores (${date.format("MMMM DD, YYYY")})`);
 
