@@ -52,12 +52,22 @@
         "id": "86",
         "type": "ttv"
     },
+    "blobdance": {
+        "id": "5ada077451d4120ea3918426",
+        "type": "bttv",
+        "animated": true
+    },
     "bogged": {
         "id": "274629",
         "type": "ffz"
     },
     "catjam": {
         "id": "5f1b0186cf6d2144653d2970",
+        "type": "bttv",
+        "animated": true
+    },
+    "chyna": {
+        "id": "5f63caf89d79b403d9336438",
         "type": "bttv",
         "animated": true
     },
@@ -229,6 +239,11 @@
         "id": "357",
         "type": "ttv"
     },
+    "hyperclap": {
+        "id": "5b35ca08392c604c5fd81874",
+        "type": "bttv",
+        "animated": true
+    },
     "hyperdansgame": {
         "id": "261915",
         "type": "ffz"
@@ -298,6 +313,11 @@
         "id": "139407",
         "type": "ffz"
     },
+    "malarkey": {
+        "id": "5e545368a3253554d66242b5",
+        "type": "bttv",
+        "animated": true
+    },
     "man": {
         "id": "266564",
         "type": "ffz"
@@ -326,6 +346,10 @@
     "monkahmm": {
         "id": "240746",
         "type": "ffz"
+    },
+    "monkalaugh": {
+        "id": "5dcea287e579cd5efad7505c",
+        "type": "bttv"
     },
     "monkas": {
         "id": "56e9f494fff3cc5c35e5287e",
@@ -357,6 +381,11 @@
         "id": "566ca06065dbbdab32ec054e",
         "type": "bttv"
     },
+    "nopers": {
+        "id": "5ec39a9db289582eef76f733",
+        "type": "bttv",
+        "animated": true
+    },
     "notlikethis": {
         "id": "58765",
         "type": "ttv"
@@ -367,6 +396,14 @@
     },
     "okaychamp": {
         "id": "280358",
+        "type": "ffz"
+    },
+    "okayga": {
+        "id": "287489",
+        "type": "ffz"
+    },
+    "okayge": {
+        "id": "410314",
         "type": "ffz"
     },
     "omegalul": {
@@ -473,6 +510,10 @@
         "type": "bttv",
         "animated": true
     },
+    "pepela": {
+        "id": "355871",
+        "type": "ffz"
+    },
     "pepelaugh": {
         "id": "59b73909b27c823d5b1f6052",
         "type": "bttv"
@@ -536,6 +577,10 @@
         "type": "bttv",
         "animated": true
     },
+    "punchtrees": {
+        "id": "47",
+        "type": "ttv"
+    },
     "residentsleeper": {
         "id": "245",
         "type": "ttv"
@@ -552,6 +597,11 @@
     "sadge": {
         "id": "425196",
         "type": "ffz"
+    },
+    "shungite": {
+        "id": "5ec296c6ec17d81685a54d2a",
+        "type": "bttv",
+        "animated": true
     },
     "smorc": {
         "id": "52",
@@ -598,6 +648,11 @@
         "type": "bttv",
         "animated": true
     },
+    "ttrump": {
+        "id": "5827995ceea70ca56b244672",
+        "type": "bttv",
+        "animated": true
+    },
     "van": {
         "id": "269928",
         "type": "ffz"
@@ -618,6 +673,10 @@
     "weirdchamp": {
         "id": "262468",
         "type": "ffz"
+    },
+    "weirdge": {
+        "id": "5ec57ff2f54be95e2a82765a",
+        "type": "bttv"
     },
     "widehard": {
         "id": "246878",
@@ -649,6 +708,16 @@
         "type": "bttv",
         "animated": true
     },
+    "xqcmald": {
+        "id": "5f2d66566f3782446602676e",
+        "type": "bttv",
+        "animated": true
+    },
+    "xqcsearch": {
+        "id": "5f571a9faa6fe06bfb600111",
+        "type": "bttv",
+        "animated": true
+    },
     "xqcslam": {
         "id": "5cb9176c750fbb4a2533fc42",
         "type": "bttv",
@@ -667,6 +736,11 @@
     "yep": {
         "id": "418189",
         "type": "ffz"
+    },
+    "yeppers": {
+        "id": "5e5aa6c2eb16d554dde5db7b",
+        "type": "bttv",
+        "animated": true
     },
     "zulul": {
         "id": "57b38e53d5472c5343820619",
