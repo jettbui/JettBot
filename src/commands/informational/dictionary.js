@@ -5,11 +5,11 @@ const { MessageEmbed } = require("discord.js"),
 
 module.exports = {
     name: "dictionary",
-    description: "TODO",
+    description: "Search a definition for a word",
     category: "informational",
     aliases: ["word", "define", "definition", "dict"],
     args: true,
-    usage: "<keywords>",
+    usage: "<word>",
     execute(message, args) {
         const flDict = {
             "noun": "n.",
