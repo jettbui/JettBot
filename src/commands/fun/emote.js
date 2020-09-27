@@ -22,8 +22,8 @@ module.exports = {
             const roleMention = args[i].match(/^<@&?(\d+)>$/);
             const channelMention = args[i].match(/^<#?(\d+)>$/);
             if (userMention) {
-                const user = message.client.users.cache.get(userMention[1]);
-                msgArr[i - 1] = `@${user.username}`;
+                const member = message.guild.members.cache.get(userMention[1]);
+                msgArr[i - 1] = `@${member.displayName}`;
             } else if (roleMention) {
                 const role = message.guild.roles.cache.get(roleMention[1]);
                 msgArr[i - 1] = `@${role.name}`;
