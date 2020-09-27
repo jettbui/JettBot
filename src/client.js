@@ -8,5 +8,7 @@ module.exports = class extends Client {
 
         this.commands = new Collection();
         this.config = config;
+        this.config.token = process.env.TOKEN;
+        this.config.youtubeAPIKey = process.env.YOUTUBE_API;
     }
 };

@@ -1,10 +1,8 @@
 const { MessageEmbed } = require("discord.js"),
     Youtube = require("simple-youtube-api"),
     ytdl = require("ytdl-core"),
-    { youtubeAPIkey } = require("../../../config.json"),
     { globalEmbed, musicEmbeds: { queueEmbed, songEmbed } } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
-const youtube = new Youtube(youtubeAPIkey);
 
 module.exports = {
     name: "play",
@@ -15,6 +13,7 @@ module.exports = {
     usage: "<link>",
     guildOnly: true,
     async execute(message, args) {
+        const youtube = new Youtube(message.client.config.youtubeAPIKey);
         const voiceChannel = message.member.voice.channel;
         const user = message.member.user;
         const embed = new MessageEmbed()

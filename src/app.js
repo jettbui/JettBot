@@ -5,6 +5,8 @@ const { Structures, Collection } = require("discord.js"),
     { exit } = require("process"),
     { globalResponses } = require("./json/responses.json");
 
+// environment variables
+require("dotenv").config();
 
 // extend guild structure
 Structures.extend("Guild", (Guild) => {

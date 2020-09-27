@@ -4,7 +4,5 @@
     "inviteUrl": "https://discord.com/api/oauth2/authorize?client_id=734847208154857493&permissions=8&scope=bot",
     "logMessages": true,
     "ownerId": "80509831487692800",
-    "prefix": "!",
-    "token": "NzM0ODQ3MjA4MTU0ODU3NDkz.XxXpyw.63QSXSdfdcXCDDPKptq3xRi2Qo0",
-    "youtubeAPIkey": "AIzaSyArDi4xAb1v2LEtnGPQxcC0PvklyOJsoiU"
+    "prefix": "!"
 }
