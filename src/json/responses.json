@@ -7,6 +7,7 @@
         "noPermission": "You do not have permission to use that command.",
         "notAuthorized": "You do not have authorization to use that command.",
         "serverOnly": "That command can only be used in a server.",
+        "invalidArgs": "Invalid arguments provided.",
         "tooLittleArgs": "Too little arguments provided.",
         "tooManyArgs": "Too many arguments provided."
     },
@@ -28,6 +29,9 @@
         "noPermission": "I do not have permission to ban that user.",
         "invalidUser": "That user does not exist.",
         "selfUser": "You cannot ban yourself."
+    },
+    "dictionaryResponses": {
+        "noResult": "No definitions found."
     },
     "emoteResponses": {
         "noEmote": "No emote found."
