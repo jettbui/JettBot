@@ -11,6 +11,7 @@ module.exports = {
     args: false,
     usage: "[stop/option]",
     guildOnly: true,
+    disabled: true,
     execute(message, args) {
         const textChannel = message.channel;
         const option = (args[0]) ? args[0].toLowerCase() : null;
