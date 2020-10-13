@@ -51,11 +51,12 @@
         "selfUser": "You cannot kick yourself."
     },
     "musicResponses": {
-        "error": "An error occurred while trying to play a song.",
+        "error": "An error occurred while trying to play a song. You may use !restart to request a bot restart.",
         "invalidPlaylist": "Unable to fetch playlist.",
         "invalidSong": "Unable to fetch song.",
         "invalidVoiceChannel": "You must be in the same voice channel as the bot.",
         "invalidVolume": "Volume must be a number within 1-100.",
+        "lyricsTooLong": "The lyrics for that song is too long.",
         "noSong": "There is no song currently playing.",
         "noVoiceChannel": "You must be in a voice channel.",
         "triviaRunning": "There is currently a trivia running.",
