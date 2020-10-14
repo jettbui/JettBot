@@ -75,6 +75,11 @@
         "id": "54fa8fce01e468494b85b53c",
         "type": "bttv"
     },
+    "citto": {
+        "id": "55cb47a82718127806ad3202",
+        "type": "bttv",
+        "animated": true
+    },
     "clap": {
         "id": "55b6f480e66682f576dd94f5",
         "type": "bttv",
@@ -126,6 +131,10 @@
         "id": "360",
         "type": "ttv"
     },
+    "fcreep": {
+        "id": "56d937f7216793c63ec140cb",
+        "type": "bttv"
+    },
     "feelsamazingman": {
         "id": "5733ff12e72c3c0814233e20",
         "type": "bttv"
@@ -140,6 +149,10 @@
     },
     "feelsdankman": {
         "id": "167677",
+        "type": "ffz"
+    },
+    "feelsgladman": {
+        "id": "69627",
         "type": "ffz"
     },
     "feelsgoodman": {
@@ -351,9 +364,22 @@
         "id": "5dcea287e579cd5efad7505c",
         "type": "bttv"
     },
+    "monkaomega": {
+        "id": "167431",
+        "type": "ffz"
+    },
     "monkas": {
         "id": "56e9f494fff3cc5c35e5287e",
         "type": "bttv"
+    },
+    "monkashake": {
+        "id": "58d867c84c25f4458349ecc7",
+        "type": "bttv",
+        "animated": true
+    },
+    "monkastare": {
+        "id": "405963",
+        "type": "ffz"
     },
     "monkatos": {
         "id": "237857",
@@ -414,6 +440,10 @@
         "id": "61496",
         "type": "ffz"
     },
+    "pagman": {
+        "id": "444608",
+        "type": "ffz"
+    },
     "pausechamp": {
         "id": "349048",
         "type": "ffz"
@@ -427,6 +457,11 @@
         "type": "bttv",
         "animated": true
     },
+    "peepogiggle": {
+        "id": "5e1eb57cbca2995f13fb7ce7",
+        "type": "bttv",
+        "animated": true
+    },
     "peepoglad": {
         "id": "244322",
         "type": "ffz"
@@ -435,12 +470,22 @@
         "id": "5a16ee718c22a247ead62d4a",
         "type": "bttv"
     },
+    "peepoleave": {
+        "id": "5d324913ff6ed36801311fd2",
+        "type": "bttv",
+        "animated": true
+    },
     "peeposad": {
         "id": "5a16ddca8c22a247ead62ceb",
         "type": "bttv"
     },
     "peeposimp": {
         "id": "5e3a2c6cd736527d5cd26836",
+        "type": "bttv",
+        "animated": true
+    },
+    "peepoween": {
+        "id": "5f747148ce8bc74a942400dc",
         "type": "bttv",
         "animated": true
     },
@@ -537,6 +582,10 @@
         "type": "bttv",
         "animated": true
     },
+    "pepog": {
+        "id": "218530",
+        "type": "ffz"
+    },
     "petthepeepo": {
         "id": "5ec059009af1ea16863b2dec",
         "type": "bttv",
@@ -603,6 +652,10 @@
         "type": "bttv",
         "animated": true
     },
+    "sillychamp": {
+        "id": "368776",
+        "type": "ffz"
+    },
     "smorc": {
         "id": "52",
         "type": "ttv"
@@ -648,6 +701,11 @@
         "type": "bttv",
         "animated": true
     },
+    "trisad": {
+        "id": "5e5a6d31ddc7a054d7f0e33a",
+        "type": "bttv",
+        "animated": true
+    },
     "ttrump": {
         "id": "5827995ceea70ca56b244672",
         "type": "bttv",
@@ -656,6 +714,16 @@
     "van": {
         "id": "269928",
         "type": "ffz"
+    },
+    "ventkill": {
+        "id": "5f5d95db0b77be6bfcadb033",
+        "type": "bttv",
+        "animated": true
+    },
+    "violintime": {
+        "id": "5dd35789ab289c5efc1688be",
+        "type": "bttv",
+        "animated": true
     },
     "vislaud": {
         "id": "550352766f86a5b26c281ba2",
@@ -739,6 +807,11 @@
     },
     "yeppers": {
         "id": "5e5aa6c2eb16d554dde5db7b",
+        "type": "bttv",
+        "animated": true
+    },
+    "yikesjam": {
+        "id": "5cff916b2316b42d72befb43",
         "type": "bttv",
         "animated": true
     },
