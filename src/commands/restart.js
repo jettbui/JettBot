@@ -4,6 +4,7 @@ module.exports = {
     aliases: [],
     args: false,
     guildOnly: false,
+    cooldown: 45,
     execute(message) {
         const requester = message.author;
         const dev = message.client.users.cache.get(message.client.config.ownerId);
