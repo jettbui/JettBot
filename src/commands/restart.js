@@ -20,6 +20,7 @@ module.exports = {
                     .on("collect", (reaction) => {
                         if (reaction.emoji.name == "✅") {
                             requester.send("Your request to restart the bot was accepted.");
+                            message.client.restart();
                         } else {
                             requester.send("Your request to restart the bot was declined.");
                         }
