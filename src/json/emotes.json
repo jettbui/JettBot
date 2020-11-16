@@ -28,6 +28,11 @@
         "id": "239504",
         "type": "ffz"
     },
+    "abdulpls": {
+        "id": "59a4ea2865231102cde26e9c",
+        "type": "bttv",
+        "animated": true
+    },
     "anele": {
         "id": "3792",
         "type": "ttv"
@@ -432,6 +437,10 @@
         "id": "410314",
         "type": "ffz"
     },
+    "omegakekchamp": {
+        "id": "5fa8de6ff447d2645c1fa586",
+        "type": "bttv"
+    },
     "omegakekw": {
         "id": "387828",
         "type": "ffz"
@@ -439,6 +448,11 @@
     "omegalul": {
         "id": "128054",
         "type": "ffz"
+    },
+    "outtapocket": {
+        "id": "5ebfbb8bec17d81685a51621",
+        "type": "bttv",
+        "animated": true
     },
     "pagchomp": {
         "id": "61496",
@@ -461,7 +475,12 @@
         "type": "bttv",
         "animated": true
     },
-    "peepogiggle": {
+    "peepogift": {
+        "id": "5f04b4816bd7f3052a0c5bde",
+        "type": "bttv",
+        "animated": true
+    },
+    "peepogiggles": {
         "id": "5e1eb57cbca2995f13fb7ce7",
         "type": "bttv",
         "animated": true
@@ -479,12 +498,22 @@
         "type": "bttv",
         "animated": true
     },
+    "peepopogclimbingtreehard4house": {
+        "id": "5e2bac6ebca2995f13fc1379",
+        "type": "bttv",
+        "animated": true
+    },
     "peeposad": {
         "id": "5a16ddca8c22a247ead62ceb",
         "type": "bttv"
     },
     "peeposimp": {
         "id": "5e3a2c6cd736527d5cd26836",
+        "type": "bttv",
+        "animated": true
+    },
+    "peeposnow": {
+        "id": "5f91c1486f583802e38974aa",
         "type": "bttv",
         "animated": true
     },
