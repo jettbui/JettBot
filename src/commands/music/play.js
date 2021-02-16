@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js"),
     Youtube = require("simple-youtube-api"),
-    ytdl = require("ytdl-core"),
+    ytdl = require("ytdl-core-discord"),
     { globalEmbed, musicEmbeds: { queueEmbed, songEmbed } } = require("../../json/embeds.json"),
     { musicResponses } = require("../../json/responses.json");
 
@@ -144,9 +144,9 @@ module.exports = {
 
         queue[0].voiceChannel
             .join()
-            .then(connection => {
+            .then(async connection => {
                 const dispatcher = connection
-                    .play(ytdl(queue[0].url, { quality: "highestaudio", highWaterMark: 1 << 25 }))
+                    .play(await ytdl(queue[0].url), { type: "opus" })
                     .on("start", () => {
                         message.guild.musicData.songDispatcher = dispatcher;
                         dispatcher.setVolume(message.guild.musicData.volume);
