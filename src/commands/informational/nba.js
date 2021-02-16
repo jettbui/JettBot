@@ -63,7 +63,8 @@ module.exports = {
                             `\nGame ${game.playoffs.gameNumInSeries} (${game.playoffs.seriesSummaryText})`;
                     }
                     
-                    embed.addField(head, desc);
+                    if (head && desc)
+                        embed.addField(head, desc);
                 });
                 return message.channel.send(embed);
             });
