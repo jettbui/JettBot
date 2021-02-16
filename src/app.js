@@ -95,7 +95,7 @@ client.on("message", (message) => {
         || client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
     if (!command)
-        return message.channel.send(globalResponses.noCommand);
+        return;
 
     // check context
     if (command.disabled && message.author.id !== client.config.ownerId)
