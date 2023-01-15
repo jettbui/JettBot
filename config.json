@@ -1,8 +1,8 @@
 {
     "defaultActivity": "!help",
     "defaultCooldown": 2,
-    "inviteUrl": "https://discord.com/api/oauth2/authorize?client_id=734847208154857493&permissions=8&scope=bot",
+    "inviteUrl": "[INVITE_URL]",
     "logMessages": false,
-    "ownerId": "80509831487692800",
+    "ownerId": "[DISCORD_ID]",
     "prefix": "!"
 }

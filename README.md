@@ -2,8 +2,6 @@
 
 > JettBot is a multi-purpose and easy-to-use Discord bot made using Javascript.
 
-You can invite the bot to your server [here.](https://discord.com/api/oauth2/authorize?client_id=734847208154857493&permissions=8&scope=bot)
-
 ## Usage
 
 ### Required Packages
